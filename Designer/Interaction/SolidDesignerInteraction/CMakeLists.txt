@@ -27,7 +27,7 @@ link_directories(${ALICE_LIB_DIR})
 #-----------------------------------------------------------------------------
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-include_directories(${PROJECT_SOURCE_DIR}/Alice/Core/Foundation/AliceBasicService/Public)
+include_directories(${PROJECT_SOURCE_DIR}/Alice/Core/Foundation/AliceBasicTool/Public)
 
 #=============================================================================
 #指定工程为动态库程序
@@ -96,7 +96,7 @@ endif()
 #-----------------------------------------------------------------------------
 
 target_link_libraries(SolidDesignerInteraction
-    AliceBasicService
+    AliceBasicTool
 )
 
 
