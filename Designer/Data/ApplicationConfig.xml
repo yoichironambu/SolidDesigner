@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationConfig version="1.0" product="SolidDesigner">
+  <Features>
+    <Flag name="NewUI" enabled="true"/>
+    <Flag name="GpuTess" enabled="false"/>
+  </Features>
+</ApplicationConfig>
