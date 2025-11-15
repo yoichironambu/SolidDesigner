@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ToolBarConfig version="1.0">
+
+    <!-- ========================================================= -->
+    <!-- 2. Ribbon definitions for environments                    -->
+    <!-- ========================================================= -->
+    <ribbons>
+        <ribbon id="sd.part"
+                label="NX - Part Modeling"
+                workbench="Part"
+                defaultTab="tab_part_home"/>
+
+        <ribbon id="sd.sketch"
+                label="NX - Sketch"
+                workbench="Sketch"
+                defaultTab="tab_sketch_home"/>
+
+        <ribbon id="sd.asm"
+                label="NX - Assembly"
+                workbench="Assembly"
+                defaultTab="tab_asm_home"/>
+
+        <ribbon id="sd.sheetMetal"
+                label="NX - Sheet Metal"
+                workbench="SheetMetal"
+                defaultTab="tab_sheet_home"/>
+    </ribbons>
+
+    <!-- ========================================================= -->
+    <!-- 3. Ribbon layouts per environment                         -->
+    <!-- ========================================================= -->
+    <ribbon-layouts>
+
+        <!-- ===================== Part environment ===================== -->
+        <layout ribbon="sd.part">
+
+            <!-- Tab: Home/Model -->
+            <tab id="tab_part_home" label="Model" order="10">
+                <!-- Sketch group -->
+                <group id="grp_part_sketch" label="Sketch" order="10">
+                    <control type="large-button" commandRef="sketch.new"   row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sketch.edit"  row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.reuse" row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.mirror" row="2" column="1"/>
+                </group>
+
+                <!-- Features -->
+                <group id="grp_part_features" label="Features" order="20">
+                    <control type="large-button" commandRef="model.extrude" row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="model.revolve" row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.hole"    row="0" column="2"/>
+                    <control type="small-button" commandRef="model.slot"    row="1" column="2"/>
+                    <control type="small-button" commandRef="model.chamfer" row="2" column="2"/>
+                    <control type="small-button" commandRef="model.fillet"  row="0" column="3"/>
+                    <control type="small-button" commandRef="model.shell"   row="1" column="3"/>
+                    <control type="small-button" commandRef="model.draft"   row="2" column="3"/>
+                </group>
+
+                <!-- Boolean / Feature control -->
+                <group id="grp_part_boolean" label="Boolean / Feature" order="25">
+                    <control type="small-button" commandRef="model.boolean.union"     row="0" column="0"/>
+                    <control type="small-button" commandRef="model.boolean.subtract"  row="1" column="0"/>
+                    <control type="small-button" commandRef="model.boolean.intersect" row="2" column="0"/>
+                    <control type="small-button" commandRef="model.feature.suppress"   row="0" column="1"/>
+                    <control type="small-button" commandRef="model.feature.unsuppress" row="1" column="1"/>
+                    <control type="small-button" commandRef="model.feature.delete"     row="2" column="1"/>
+                </group>
+
+                <!-- Datums -->
+                <group id="grp_part_datums" label="Datums" order="30">
+                    <control type="large-button" commandRef="datum.plane" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="datum.axis"  row="0" column="1"/>
+                    <control type="small-button" commandRef="datum.cs"    row="1" column="1"/>
+                    <control type="small-button" commandRef="datum.point" row="2" column="1"/>
+                </group>
+
+                <!-- Direct edit -->
+                <group id="grp_part_edit" label="Direct Edit" order="40">
+                    <control type="large-button" commandRef="smove.face"               row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="synchronous.pull"         row="0" column="1"/>
+                    <control type="small-button" commandRef="synchronous.offsetRegion" row="1" column="1"/>
+                    <control type="small-button" commandRef="synchronous.deleteFace"   row="2" column="1"/>
+                </group>
+
+                <!-- Measure -->
+                <group id="grp_part_measure" label="Measure" order="70">
+                    <control type="large-button" commandRef="measure.distance"  row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="measure.angle"     row="0" column="1"/>
+                    <control type="small-button" commandRef="measure.radius"    row="1" column="1"/>
+                    <control type="small-button" commandRef="measure.massProps" row="2" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Curves -->
+            <tab id="tab_part_curve" label="Curves" order="20">
+                <group id="grp_part_curve_basic" label="Basic Curves" order="10">
+                    <control type="large-button" commandRef="curve.line"  row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="curve.arc"   row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="curve.circle"    row="0" column="2"/>
+                    <control type="small-button" commandRef="curve.rectangle" row="1" column="2"/>
+                    <control type="small-button" commandRef="curve.point"     row="2" column="2"/>
+                </group>
+
+                <group id="grp_part_curve_spline" label="Splines" order="20">
+                    <control type="large-button" commandRef="curve.splineThrough" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="curve.fitSpline"     row="0" column="1"/>
+                    <control type="small-button" commandRef="curve.studioSpline"  row="1" column="1"/>
+                </group>
+
+                <group id="grp_part_curve_edit" label="Edit" order="30">
+                    <control type="small-button" commandRef="curve.trim"   row="0" column="0"/>
+                    <control type="small-button" commandRef="curve.extend" row="1" column="0"/>
+                    <control type="small-button" commandRef="curve.join"   row="2" column="0"/>
+                    <control type="small-button" commandRef="curve.fillet" row="0" column="1"/>
+                    <control type="small-button" commandRef="curve.offset" row="1" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Assembly entry -->
+            <tab id="tab_part_asm" label="Assembly" order="30">
+                <group id="grp_part_asm_components" label="Components" order="10">
+                    <control type="large-button" commandRef="asm.addComponent"       row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="asm.newComponent"      row="0" column="1"/>
+                    <control type="small-button" commandRef="asm.replaceComponent"  row="1" column="1"/>
+                    <control type="small-button" commandRef="asm.arrange"           row="2" column="1"/>
+                </group>
+                <group id="grp_part_asm_constraints" label="Constraints" order="20">
+                    <control type="large-button" commandRef="asm.constraint" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="asm.align"      row="0" column="1"/>
+                    <control type="small-button" commandRef="asm.mate"       row="1" column="1"/>
+                    <control type="small-button" commandRef="asm.distance"   row="2" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Analysis -->
+            <tab id="tab_part_analysis" label="Analysis" order="40">
+                <group id="grp_part_analysis_measure" label="Measure" order="10">
+                    <control type="large-button" commandRef="measure.dialog"  row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="measure.section" row="0" column="1"/>
+                    <control type="small-button" commandRef="measure.draft"   row="1" column="1"/>
+                </group>
+                <group id="grp_part_analysis_check" label="Check" order="20">
+                    <control type="small-button" commandRef="analysis.bodyCheck"    row="0" column="0"/>
+                    <control type="small-button" commandRef="analysis.interference" row="1" column="0"/>
+                    <control type="small-button" commandRef="analysis.mass"         row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: View -->
+            <tab id="tab_part_view" label="View" order="50">
+                <group id="grp_part_view_orientation" label="Orientation" order="10">
+                    <control type="large-button" commandRef="view.trimetric" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.top"       row="0" column="1"/>
+                    <control type="small-button" commandRef="view.front"     row="1" column="1"/>
+                    <control type="small-button" commandRef="view.right"     row="2" column="1"/>
+                </group>
+                <group id="grp_part_view_section" label="Section" order="20">
+                    <control type="large-button" commandRef="view.dynamicSection" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.clippingPlane"  row="0" column="1"/>
+                </group>
+                <group id="grp_part_view_window" label="Windows" order="30">
+                    <control type="small-button" commandRef="window.arrange"        row="0" column="0"/>
+                    <control type="small-button" commandRef="window.new"            row="1" column="0"/>
+                    <control type="small-button" commandRef="window.tileHorizontal" row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Display -->
+            <tab id="tab_part_display" label="Display" order="60">
+                <group id="grp_part_display_style" label="Display Style" order="10">
+                    <control type="large-button" commandRef="display.shaded"          row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="display.shadedWithEdges" row="0" column="1"/>
+                    <control type="small-button" commandRef="display.wireframe"       row="1" column="1"/>
+                    <control type="small-button" commandRef="display.hiddenLine"      row="2" column="1"/>
+                </group>
+                <group id="grp_part_display_object" label="Object Display" order="20">
+                    <control type="small-button" commandRef="display.show"    row="0" column="0"/>
+                    <control type="small-button" commandRef="display.hide"    row="1" column="0"/>
+                    <control type="small-button" commandRef="display.isolate" row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Selection -->
+            <tab id="tab_part_selection" label="Selection" order="70">
+                <group id="grp_part_sel_filter" label="Selection Filter" order="10">
+                    <control type="combo" commandRef="select.filter" row="0" column="0" rowSpan="1" colSpan="2"/>
+                </group>
+                <group id="grp_part_sel_method" label="Method" order="20">
+                    <control type="small-button" commandRef="select.single"    row="0" column="0"/>
+                    <control type="small-button" commandRef="select.rectangle" row="1" column="0"/>
+                    <control type="small-button" commandRef="select.lasso"     row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Tools -->
+            <tab id="tab_part_tools" label="Tools" order="80">
+                <group id="grp_part_tools_expression" label="Expressions" order="10">
+                    <control type="large-button" commandRef="tools.expressions" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_part_tools_macro" label="Journal" order="20">
+                    <control type="small-button" commandRef="tools.journal.record" row="0" column="0"/>
+                    <control type="small-button" commandRef="tools.journal.play"   row="1" column="0"/>
+                    <control type="small-button" commandRef="tools.journal.pause"  row="2" column="0"/>
+                </group>
+                <group id="grp_part_tools_python" label="Python" order="30">
+                    <control type="large-button" commandRef="tools.pythonConsole" row="0" column="0" rowSpan="3"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Applications -->
+            <tab id="tab_part_applications" label="Applications" order="90">
+                <group id="grp_part_apps_mech" label="Mechanical" order="10">
+                    <control type="large-button" commandRef="app.switch.partModeling" row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="app.switch.sheetMetal"   row="0" column="1" rowSpan="3"/>
+                </group>
+                <group id="grp_part_apps_other" label="Other" order="20">
+                    <control type="small-button" commandRef="app.switch.bim"  row="0" column="0"/>
+                    <control type="small-button" commandRef="app.switch.ship" row="1" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: GC Toolbox -->
+            <tab id="tab_part_gc_toolbox" label="GC Toolbox" order="100">
+                <group id="grp_part_gc_standard" label="Standard Parts" order="10">
+                    <control type="large-button" commandRef="gc.stdPartLibrary" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_part_gc_utils" label="Utilities" order="20">
+                    <control type="small-button" commandRef="gc.checkUpdate" row="0" column="0"/>
+                    <control type="small-button" commandRef="gc.settings"    row="1" column="0"/>
+                </group>
+            </tab>
+
+        </layout>
+
+        <!-- ===================== Sketch environment ===================== -->
+        <layout ribbon="sd.sketch">
+
+            <!-- Tab: Sketch Home -->
+            <tab id="tab_sketch_home" label="Sketch" order="10">
+                <!-- Geometry -->
+                <group id="grp_sketch_geometry" label="Geometry" order="10">
+                    <control type="large-button" commandRef="curve.line"          row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="curve.circle"        row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="curve.arc"           row="0" column="2"/>
+                    <control type="small-button" commandRef="curve.rectangle"     row="1" column="2"/>
+                    <control type="small-button" commandRef="curve.splineThrough" row="2" column="2"/>
+                </group>
+
+                <!-- Modify -->
+                <group id="grp_sketch_modify" label="Modify" order="20">
+                    <control type="small-button" commandRef="sketch.modify.trim"    row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.extend"  row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.fillet"  row="2" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.offset"  row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.modify.mirror"  row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.modify.pattern" row="2" column="1"/>
+                </group>
+
+                <!-- Sketch management -->
+                <group id="grp_sketch_manage" label="Sketch Management" order="30">
+                    <control type="large-button" commandRef="sketch.new"  row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sketch.edit" row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.reuse" row="1" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Dimensions -->
+            <tab id="tab_sketch_dim" label="Dimensions" order="20">
+                <group id="grp_sketch_dim_linear" label="Linear" order="10">
+                    <control type="large-button" commandRef="sketch.dim.general"    row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sketch.dim.horizontal" row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.dim.vertical"   row="1" column="1"/>
+                </group>
+                <group id="grp_sketch_dim_radial" label="Radial / Angular" order="20">
+                    <control type="small-button" commandRef="sketch.dim.radius"   row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.dim.diameter" row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.dim.angle"    row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Constraints -->
+            <tab id="tab_sketch_constraint" label="Constraints" order="30">
+                <group id="grp_sketch_constraint_geo" label="Geometric Constraints" order="10">
+                    <control type="small-button" commandRef="sketch.constraint.horizontal"    row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.vertical"      row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.parallel"      row="2" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.perpendicular" row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.constraint.tangent"       row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.constraint.coincident"    row="2" column="1"/>
+                </group>
+                <group id="grp_sketch_constraint_other" label="Other" order="20">
+                    <control type="small-button" commandRef="sketch.constraint.equal"     row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.symmetric" row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.fix"       row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Analysis -->
+            <tab id="tab_sketch_analysis" label="Analysis" order="40">
+                <group id="grp_sketch_analysis_measure" label="Measure" order="10">
+                    <control type="large-button" commandRef="measure.distance" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="measure.angle"    row="0" column="1"/>
+                    <control type="small-button" commandRef="measure.radius"   row="1" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Shared: view / display / selection / tools -->
+            <tab id="tab_sketch_view" label="View" order="50">
+                <group id="grp_sketch_view_orientation" label="Orientation" order="10">
+                    <control type="large-button" commandRef="view.trimetric" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.top"       row="0" column="1"/>
+                    <control type="small-button" commandRef="view.front"     row="1" column="1"/>
+                    <control type="small-button" commandRef="view.right"     row="2" column="1"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sketch_display" label="Display" order="60">
+                <group id="grp_sketch_display_style" label="Display Style" order="10">
+                    <control type="large-button" commandRef="display.shaded"          row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="display.shadedWithEdges" row="0" column="1"/>
+                    <control type="small-button" commandRef="display.wireframe"       row="1" column="1"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sketch_selection" label="Selection" order="70">
+                <group id="grp_sketch_sel_filter" label="Selection Filter" order="10">
+                    <control type="combo" commandRef="select.filter" row="0" column="0" rowSpan="1" colSpan="2"/>
+                </group>
+                <group id="grp_sketch_sel_method" label="Method" order="20">
+                    <control type="small-button" commandRef="select.single"    row="0" column="0"/>
+                    <control type="small-button" commandRef="select.rectangle" row="1" column="0"/>
+                    <control type="small-button" commandRef="select.lasso"     row="2" column="0"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sketch_tools" label="Tools" order="80">
+                <group id="grp_sketch_tools_expression" label="Expressions" order="10">
+                    <control type="large-button" commandRef="tools.expressions" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_sketch_tools_python" label="Python" order="20">
+                    <control type="large-button" commandRef="tools.pythonConsole" row="0" column="0" rowSpan="3"/>
+                </group>
+            </tab>
+
+        </layout>
+
+        <!-- ===================== Assembly environment ===================== -->
+        <layout ribbon="sd.asm">
+
+            <!-- Tab: Assembly Home -->
+            <tab id="tab_asm_home" label="Assembly" order="10">
+                <!-- Components -->
+                <group id="grp_asm_components" label="Components" order="10">
+                    <control type="large-button" commandRef="asm.addComponent"      row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="asm.newComponent"      row="0" column="1"/>
+                    <control type="small-button" commandRef="asm.replaceComponent"  row="1" column="1"/>
+                    <control type="small-button" commandRef="asm.arrange"           row="2" column="1"/>
+                </group>
+
+                <!-- Constraints -->
+                <group id="grp_asm_constraints" label="Constraints" order="20">
+                    <control type="large-button" commandRef="asm.constraint" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="asm.align"      row="0" column="1"/>
+                    <control type="small-button" commandRef="asm.mate"       row="1" column="1"/>
+                    <control type="small-button" commandRef="asm.distance"   row="2" column="1"/>
+                </group>
+
+                <!-- Exploded views -->
+                <group id="grp_asm_explode" label="Exploded Views" order="30">
+                    <control type="large-button" commandRef="asm.explode"   row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="asm.unexplode" row="0" column="1"/>
+                </group>
+
+                <!-- Measure -->
+                <group id="grp_asm_measure" label="Measure" order="40">
+                    <control type="large-button" commandRef="measure.distance" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="measure.angle"    row="0" column="1"/>
+                    <control type="small-button" commandRef="measure.massProps" row="1" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Part Modeling in Assembly -->
+            <tab id="tab_asm_model" label="Model" order="20">
+                <group id="grp_asm_part_features" label="Part Features" order="10">
+                    <control type="large-button" commandRef="model.extrude" row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="model.revolve" row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.hole"    row="0" column="2"/>
+                    <control type="small-button" commandRef="model.slot"    row="1" column="2"/>
+                    <control type="small-button" commandRef="model.fillet"  row="2" column="2"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Analysis -->
+            <tab id="tab_asm_analysis" label="Analysis" order="40">
+                <group id="grp_asm_analysis" label="Assembly Analysis" order="10">
+                    <control type="large-button" commandRef="analysis.interference" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="analysis.mass"         row="0" column="1"/>
+                    <control type="small-button" commandRef="measure.dialog"        row="1" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Shared: view / display / selection / tools / applications / GC -->
+            <tab id="tab_asm_view" label="View" order="50">
+                <group id="grp_asm_view_orientation" label="Orientation" order="10">
+                    <control type="large-button" commandRef="view.trimetric" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.top"       row="0" column="1"/>
+                    <control type="small-button" commandRef="view.front"     row="1" column="1"/>
+                    <control type="small-button" commandRef="view.right"     row="2" column="1"/>
+                </group>
+                <group id="grp_asm_view_section" label="Section" order="20">
+                    <control type="large-button" commandRef="view.dynamicSection" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.clippingPlane"  row="0" column="1"/>
+                </group>
+            </tab>
+
+            <tab id="tab_asm_display" label="Display" order="60">
+                <group id="grp_asm_display_style" label="Display Style" order="10">
+                    <control type="large-button" commandRef="display.shaded"          row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="display.shadedWithEdges" row="0" column="1"/>
+                    <control type="small-button" commandRef="display.wireframe"       row="1" column="1"/>
+                    <control type="small-button" commandRef="display.hiddenLine"      row="2" column="1"/>
+                </group>
+                <group id="grp_asm_display_object" label="Object Display" order="20">
+                    <control type="small-button" commandRef="display.show"    row="0" column="0"/>
+                    <control type="small-button" commandRef="display.hide"    row="1" column="0"/>
+                    <control type="small-button" commandRef="display.isolate" row="2" column="0"/>
+                </group>
+            </tab>
+
+            <tab id="tab_asm_selection" label="Selection" order="70">
+                <group id="grp_asm_sel_filter" label="Selection Filter" order="10">
+                    <control type="combo" commandRef="select.filter" row="0" column="0" rowSpan="1" colSpan="2"/>
+                </group>
+                <group id="grp_asm_sel_method" label="Method" order="20">
+                    <control type="small-button" commandRef="select.single"    row="0" column="0"/>
+                    <control type="small-button" commandRef="select.rectangle" row="1" column="0"/>
+                    <control type="small-button" commandRef="select.lasso"     row="2" column="0"/>
+                </group>
+            </tab>
+
+            <tab id="tab_asm_tools" label="Tools" order="80">
+                <group id="grp_asm_tools_expression" label="Expressions" order="10">
+                    <control type="large-button" commandRef="tools.expressions" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_asm_tools_python" label="Python" order="20">
+                    <control type="large-button" commandRef="tools.pythonConsole" row="0" column="0" rowSpan="3"/>
+                </group>
+            </tab>
+
+            <tab id="tab_asm_applications" label="Applications" order="90">
+                <group id="grp_asm_apps_switch" label="Environment Switch" order="10">
+                    <control type="large-button" commandRef="app.switch.assembly"     row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="app.switch.partModeling" row="0" column="1" rowSpan="3"/>
+                    <control type="large-button" commandRef="app.switch.sheetMetal"   row="0" column="2" rowSpan="3"/>
+                </group>
+            </tab>
+
+            <tab id="tab_asm_gc_toolbox" label="GC Toolbox" order="100">
+                <group id="grp_asm_gc_standard" label="Standard Parts" order="10">
+                    <control type="large-button" commandRef="gc.stdPartLibrary" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_asm_gc_utils" label="Utilities" order="20">
+                    <control type="small-button" commandRef="gc.checkUpdate" row="0" column="0"/>
+                    <control type="small-button" commandRef="gc.settings"    row="1" column="0"/>
+                </group>
+            </tab>
+
+        </layout>
+
+        <!-- ===================== Sheet metal environment ===================== -->
+        <layout ribbon="sd.sheetMetal">
+
+            <!-- Tab: Sheet Metal Home -->
+            <tab id="tab_sheet_home" label="Sheet Metal" order="10">
+                <!-- Base / flanges -->
+                <group id="grp_sheet_base" label="Base / Flange" order="10">
+                    <control type="large-button" commandRef="sheet.baseFlange"   row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="sheet.edgeFlange"   row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="sheet.contourFlange" row="0" column="2"/>
+                    <control type="small-button" commandRef="sheet.loftedFlange"  row="1" column="2"/>
+                    <control type="small-button" commandRef="sheet.tab"           row="2" column="2"/>
+                </group>
+
+                <!-- Bends / cutouts -->
+                <group id="grp_sheet_bend" label="Bends / Cutouts" order="20">
+                    <control type="large-button" commandRef="sheet.bend"    row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sheet.jog"     row="0" column="1"/>
+                    <control type="small-button" commandRef="sheet.cutout"  row="1" column="1"/>
+                    <control type="small-button" commandRef="sheet.hole"    row="2" column="1"/>
+                </group>
+
+                <!-- Corners -->
+                <group id="grp_sheet_corner" label="Corners" order="30">
+                    <control type="small-button" commandRef="sheet.cornerRelief" row="0" column="0"/>
+                    <control type="small-button" commandRef="sheet.breakCorner"  row="1" column="0"/>
+                </group>
+
+                <!-- Flat pattern -->
+                <group id="grp_sheet_flat" label="Flat Pattern" order="40">
+                    <control type="large-button" commandRef="sheet.unbend"     row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sheet.rebend"     row="0" column="1"/>
+                    <control type="small-button" commandRef="sheet.flatten"    row="1" column="1"/>
+                    <control type="small-button" commandRef="sheet.exportFlat" row="2" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Sketch in sheet metal -->
+            <tab id="tab_sheet_sketch" label="Sketch" order="20">
+                <group id="grp_sheet_sketch_geometry" label="Geometry" order="10">
+                    <control type="large-button" commandRef="curve.line"          row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="curve.circle"        row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="curve.rectangle"     row="0" column="2"/>
+                    <control type="small-button" commandRef="curve.splineThrough" row="1" column="2"/>
+                </group>
+                <group id="grp_sheet_sketch_modify" label="Modify" order="20">
+                    <control type="small-button" commandRef="sketch.modify.trim"   row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.offset" row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.mirror" row="2" column="0"/>
+                </group>
+            </tab>
+
+            <!-- Tab: Analysis -->
+            <tab id="tab_sheet_analysis" label="Analysis" order="40">
+                <group id="grp_sheet_analysis" label="Analysis" order="10">
+                    <control type="large-button" commandRef="measure.dialog" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="measure.draft"  row="0" column="1"/>
+                    <control type="small-button" commandRef="analysis.bodyCheck" row="1" column="1"/>
+                </group>
+            </tab>
+
+            <!-- Shared: view / display / selection / tools / applications / GC -->
+            <tab id="tab_sheet_view" label="View" order="50">
+                <group id="grp_sheet_view_orientation" label="Orientation" order="10">
+                    <control type="large-button" commandRef="view.trimetric" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.top"       row="0" column="1"/>
+                    <control type="small-button" commandRef="view.front"     row="1" column="1"/>
+                    <control type="small-button" commandRef="view.right"     row="2" column="1"/>
+                </group>
+                <group id="grp_sheet_view_section" label="Section" order="20">
+                    <control type="large-button" commandRef="view.dynamicSection" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="view.clippingPlane"  row="0" column="1"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sheet_display" label="Display" order="60">
+                <group id="grp_sheet_display_style" label="Display Style" order="10">
+                    <control type="large-button" commandRef="display.shaded"          row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="display.shadedWithEdges" row="0" column="1"/>
+                    <control type="small-button" commandRef="display.wireframe"       row="1" column="1"/>
+                    <control type="small-button" commandRef="display.hiddenLine"      row="2" column="1"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sheet_selection" label="Selection" order="70">
+                <group id="grp_sheet_sel_filter" label="Selection Filter" order="10">
+                    <control type="combo" commandRef="select.filter" row="0" column="0" rowSpan="1" colSpan="2"/>
+                </group>
+                <group id="grp_sheet_sel_method" label="Method" order="20">
+                    <control type="small-button" commandRef="select.single"    row="0" column="0"/>
+                    <control type="small-button" commandRef="select.rectangle" row="1" column="0"/>
+                    <control type="small-button" commandRef="select.lasso"     row="2" column="0"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sheet_tools" label="Tools" order="80">
+                <group id="grp_sheet_tools_expression" label="Expressions" order="10">
+                    <control type="large-button" commandRef="tools.expressions" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_sheet_tools_python" label="Python" order="20">
+                    <control type="large-button" commandRef="tools.pythonConsole" row="0" column="0" rowSpan="3"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sheet_applications" label="Applications" order="90">
+                <group id="grp_sheet_apps_switch" label="Environment Switch" order="10">
+                    <control type="large-button" commandRef="app.switch.sheetMetal"   row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="app.switch.partModeling" row="0" column="1" rowSpan="3"/>
+                    <control type="large-button" commandRef="app.switch.assembly"     row="0" column="2" rowSpan="3"/>
+                </group>
+            </tab>
+
+            <tab id="tab_sheet_gc_toolbox" label="GC Toolbox" order="100">
+                <group id="grp_sheet_gc_standard" label="Standard Parts" order="10">
+                    <control type="large-button" commandRef="gc.stdPartLibrary" row="0" column="0" rowSpan="3"/>
+                </group>
+                <group id="grp_sheet_gc_utils" label="Utilities" order="20">
+                    <control type="small-button" commandRef="gc.checkUpdate" row="0" column="0"/>
+                    <control type="small-button" commandRef="gc.settings"    row="1" column="0"/>
+                </group>
+            </tab>
+
+        </layout>
+
+    </ribbon-layouts>
+
+
+    <!-- ========================================================= -->
+    <!-- 4. Classic menus and toolbars                            -->
+    <!-- ========================================================= -->
+    <classic-menus>
+
+        <!-- ===================== Menu bars per workbench ===================== -->
+
+        <!-- Part modeling classic menu bar -->
+        <menuBar id="nx.part.menuBar" workbench="Part" label="NX Part - Classic" order="10">
+            <menu id="menu_file"   label="File"   order="10"/>
+            <menu id="menu_edit"   label="Edit"   order="20"/>
+            <menu id="menu_view"   label="View"   order="30"/>
+            <menu id="menu_insert" label="Insert" order="40"/>
+            <menu id="menu_tools"  label="Tools"  order="50"/>
+            <menu id="menu_window" label="Window" order="60"/>
+            <menu id="menu_help"   label="Help"   order="70"/>
+        </menuBar>
+
+        <!-- Sketch environment classic menu bar -->
+        <menuBar id="nx.sketch.menuBar" workbench="Sketch" label="NX Sketch - Classic" order="20">
+            <menu id="menu_file"       label="File"        order="10"/>
+            <menu id="menu_edit"       label="Edit"        order="20"/>
+            <menu id="menu_sketch"     label="Sketch"      order="30"/>
+            <menu id="menu_dimension"  label="Dimensions"  order="40"/>
+            <menu id="menu_constraint" label="Constraints" order="50"/>
+            <menu id="menu_view"       label="View"        order="60"/>
+            <menu id="menu_tools"      label="Tools"       order="70"/>
+            <menu id="menu_window"     label="Window"      order="80"/>
+            <menu id="menu_help"       label="Help"        order="90"/>
+        </menuBar>
+
+        <!-- Assembly environment classic menu bar -->
+        <menuBar id="nx.asm.menuBar" workbench="Assembly" label="NX Assembly - Classic" order="30">
+            <menu id="menu_file"     label="File"     order="10"/>
+            <menu id="menu_edit"     label="Edit"     order="20"/>
+            <menu id="menu_assembly" label="Assembly" order="30"/>
+            <menu id="menu_insert"   label="Insert"   order="40"/>
+            <menu id="menu_view"     label="View"     order="50"/>
+            <menu id="menu_tools"    label="Tools"    order="60"/>
+            <menu id="menu_window"   label="Window"   order="70"/>
+            <menu id="menu_help"     label="Help"     order="80"/>
+        </menuBar>
+
+        <!-- Sheet metal environment classic menu bar -->
+        <menuBar id="nx.sheet.menuBar" workbench="SheetMetal" label="NX Sheet Metal - Classic" order="40">
+            <menu id="menu_file"       label="File"        order="10"/>
+            <menu id="menu_edit"       label="Edit"        order="20"/>
+            <menu id="menu_sheetMetal" label="Sheet Metal" order="30"/>
+            <menu id="menu_sketch"     label="Sketch"      order="40"/>
+            <menu id="menu_view"       label="View"        order="50"/>
+            <menu id="menu_tools"      label="Tools"       order="60"/>
+            <menu id="menu_window"     label="Window"      order="70"/>
+            <menu id="menu_help"       label="Help"        order="80"/>
+        </menuBar>
+
+        <!-- ===================== Menu definitions (shared) ===================== -->
+        <menus>
+
+            <!-- File menu -->
+            <menuDef id="menu_file" label="File">
+                <item type="command" commandRef="file.new"/>
+                <item type="command" commandRef="file.open"/>
+                <item type="separator"/>
+                <item type="command" commandRef="file.save"/>
+                <item type="command" commandRef="file.saveAs"/>
+                <item type="separator"/>
+                <item type="command" commandRef="file.close"/>
+                <item type="separator"/>
+                <item type="command" commandRef="file.exit"/>
+            </menuDef>
+
+            <!-- Edit menu -->
+            <menuDef id="menu_edit" label="Edit">
+                <item type="command" commandRef="edit.undo"/>
+                <item type="command" commandRef="edit.redo"/>
+                <item type="separator"/>
+                <item type="command" commandRef="edit.cut"/>
+                <item type="command" commandRef="edit.copy"/>
+                <item type="command" commandRef="edit.paste"/>
+                <item type="separator"/>
+                <item type="command" commandRef="edit.delete"/>
+                <item type="command" commandRef="edit.selectAll"/>
+            </menuDef>
+
+            <!-- View menu -->
+            <menuDef id="menu_view" label="View">
+                <!-- Orientation -->
+                <item type="command" commandRef="view.trimetric"/>
+                <item type="command" commandRef="view.top"/>
+                <item type="command" commandRef="view.front"/>
+                <item type="command" commandRef="view.right"/>
+                <item type="separator"/>
+                <!-- Display style -->
+                <item type="command" commandRef="display.shaded"/>
+                <item type="command" commandRef="display.shadedWithEdges"/>
+                <item type="command" commandRef="display.wireframe"/>
+                <item type="command" commandRef="display.hiddenLine"/>
+                <item type="separator"/>
+                <!-- Section / clipping -->
+                <item type="command" commandRef="view.dynamicSection"/>
+                <item type="command" commandRef="view.clippingPlane"/>
+                <item type="separator"/>
+                <!-- UI built-in -->
+                <item type="command" commandRef="ui.toggleMode"/>
+                <item type="command" commandRef="ui.saveLayout"/>
+                <item type="command" commandRef="ui.restoreLayout"/>
+            </menuDef>
+
+            <!-- Insert menu: for part & assembly -->
+            <menuDef id="menu_insert" label="Insert">
+                <!-- Sketch & curves -->
+                <item type="command" commandRef="sketch.new"/>
+                <item type="separator"/>
+                <!-- Solid features -->
+                <item type="command" commandRef="model.extrude"/>
+                <item type="command" commandRef="model.revolve"/>
+                <item type="command" commandRef="model.hole"/>
+                <item type="command" commandRef="model.slot"/>
+                <item type="separator"/>
+                <item type="command" commandRef="model.chamfer"/>
+                <item type="command" commandRef="model.fillet"/>
+                <item type="command" commandRef="model.shell"/>
+                <item type="command" commandRef="model.draft"/>
+                <item type="separator"/>
+                <!-- Datums -->
+                <item type="command" commandRef="datum.plane"/>
+                <item type="command" commandRef="datum.axis"/>
+                <item type="command" commandRef="datum.cs"/>
+                <item type="command" commandRef="datum.point"/>
+                <item type="separator"/>
+                <!-- Assembly entry -->
+                <item type="command" commandRef="asm.addComponent"/>
+                <item type="command" commandRef="asm.newComponent"/>
+            </menuDef>
+
+            <!-- Sketch menu (sketch & sheet environments) -->
+            <menuDef id="menu_sketch" label="Sketch">
+                <item type="command" commandRef="curve.line"/>
+                <item type="command" commandRef="curve.circle"/>
+                <item type="command" commandRef="curve.arc"/>
+                <item type="command" commandRef="curve.rectangle"/>
+                <item type="command" commandRef="curve.splineThrough"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sketch.modify.trim"/>
+                <item type="command" commandRef="sketch.modify.extend"/>
+                <item type="command" commandRef="sketch.modify.fillet"/>
+                <item type="command" commandRef="sketch.modify.offset"/>
+                <item type="command" commandRef="sketch.modify.mirror"/>
+                <item type="command" commandRef="sketch.modify.pattern"/>
+            </menuDef>
+
+            <!-- Dimension menu (sketch environment) -->
+            <menuDef id="menu_dimension" label="Dimensions">
+                <item type="command" commandRef="sketch.dim.general"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sketch.dim.horizontal"/>
+                <item type="command" commandRef="sketch.dim.vertical"/>
+                <item type="command" commandRef="sketch.dim.radius"/>
+                <item type="command" commandRef="sketch.dim.diameter"/>
+                <item type="command" commandRef="sketch.dim.angle"/>
+            </menuDef>
+
+            <!-- Constraints menu (sketch environment) -->
+            <menuDef id="menu_constraint" label="Constraints">
+                <item type="command" commandRef="sketch.constraint.horizontal"/>
+                <item type="command" commandRef="sketch.constraint.vertical"/>
+                <item type="command" commandRef="sketch.constraint.parallel"/>
+                <item type="command" commandRef="sketch.constraint.perpendicular"/>
+                <item type="command" commandRef="sketch.constraint.tangent"/>
+                <item type="command" commandRef="sketch.constraint.coincident"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sketch.constraint.equal"/>
+                <item type="command" commandRef="sketch.constraint.symmetric"/>
+                <item type="command" commandRef="sketch.constraint.fix"/>
+            </menuDef>
+
+            <!-- Assembly menu -->
+            <menuDef id="menu_assembly" label="Assembly">
+                <item type="command" commandRef="asm.addComponent"/>
+                <item type="command" commandRef="asm.newComponent"/>
+                <item type="command" commandRef="asm.replaceComponent"/>
+                <item type="separator"/>
+                <item type="command" commandRef="asm.constraint"/>
+                <item type="command" commandRef="asm.align"/>
+                <item type="command" commandRef="asm.mate"/>
+                <item type="command" commandRef="asm.distance"/>
+                <item type="separator"/>
+                <item type="command" commandRef="asm.explode"/>
+                <item type="command" commandRef="asm.unexplode"/>
+                <item type="separator"/>
+                <item type="command" commandRef="analysis.interference"/>
+            </menuDef>
+
+            <!-- Sheet metal menu -->
+            <menuDef id="menu_sheetMetal" label="Sheet Metal">
+                <item type="command" commandRef="sheet.baseFlange"/>
+                <item type="command" commandRef="sheet.edgeFlange"/>
+                <item type="command" commandRef="sheet.contourFlange"/>
+                <item type="command" commandRef="sheet.loftedFlange"/>
+                <item type="command" commandRef="sheet.tab"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sheet.bend"/>
+                <item type="command" commandRef="sheet.jog"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sheet.cutout"/>
+                <item type="command" commandRef="sheet.hole"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sheet.cornerRelief"/>
+                <item type="command" commandRef="sheet.breakCorner"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sheet.unbend"/>
+                <item type="command" commandRef="sheet.rebend"/>
+                <item type="command" commandRef="sheet.flatten"/>
+                <item type="command" commandRef="sheet.exportFlat"/>
+            </menuDef>
+
+            <!-- Tools menu -->
+            <menuDef id="menu_tools" label="Tools">
+                <item type="command" commandRef="tools.expressions"/>
+                <item type="separator"/>
+                <item type="command" commandRef="measure.dialog"/>
+                <item type="command" commandRef="measure.draft"/>
+                <item type="separator"/>
+                <item type="command" commandRef="tools.pythonConsole"/>
+                <item type="command" commandRef="tools.commandLine"/>
+                <item type="separator"/>
+                <!-- Application switching / GC toolbox entry -->
+                <item type="command" commandRef="app.switch.partModeling"/>
+                <item type="command" commandRef="app.switch.assembly"/>
+                <item type="command" commandRef="app.switch.sheetMetal"/>
+                <item type="separator"/>
+                <item type="command" commandRef="gc.stdPartLibrary"/>
+                <item type="command" commandRef="gc.settings"/>
+            </menuDef>
+
+            <!-- Window menu -->
+            <menuDef id="menu_window" label="Window">
+                <item type="command" commandRef="window.new"/>
+                <item type="command" commandRef="window.arrange"/>
+                <item type="command" commandRef="window.tileHorizontal"/>
+            </menuDef>
+
+            <!-- Help menu -->
+            <menuDef id="menu_help" label="Help">
+                <item type="command" commandRef="help.contents"/>
+                <item type="separator"/>
+                <item type="command" commandRef="help.about"/>
+            </menuDef>
+
+        </menus>
+
+        <!-- ===================== Toolbars (shared) ===================== -->
+        <toolBars>
+
+            <!-- Standard toolbar: file + undo/redo + measure -->
+            <toolBar id="tb_standard" label="Standard" area="Top" order="10">
+                <item type="command" commandRef="file.new"/>
+                <item type="command" commandRef="file.open"/>
+                <item type="command" commandRef="file.save"/>
+                <item type="separator"/>
+                <item type="command" commandRef="edit.undo"/>
+                <item type="command" commandRef="edit.redo"/>
+                <item type="separator"/>
+                <item type="command" commandRef="measure.distance"/>
+            </toolBar>
+
+            <!-- View toolbar -->
+            <toolBar id="tb_view" label="View" area="Top" order="20">
+                <item type="command" commandRef="view.trimetric"/>
+                <item type="command" commandRef="view.top"/>
+                <item type="command" commandRef="view.front"/>
+                <item type="command" commandRef="view.right"/>
+                <item type="separator"/>
+                <item type="command" commandRef="display.shaded"/>
+                <item type="command" commandRef="display.shadedWithEdges"/>
+                <item type="command" commandRef="display.wireframe"/>
+            </toolBar>
+
+            <!-- Sketch toolbar (for sketch / sheet) -->
+            <toolBar id="tb_sketch" label="Sketch" area="Top" order="30">
+                <item type="command" commandRef="curve.line"/>
+                <item type="command" commandRef="curve.circle"/>
+                <item type="command" commandRef="curve.rectangle"/>
+                <item type="command" commandRef="curve.splineThrough"/>
+                <item type="separator"/>
+                <item type="command" commandRef="sketch.dim.general"/>
+            </toolBar>
+
+            <!-- Assembly toolbar -->
+            <toolBar id="tb_assembly" label="Assembly" area="Top" order="40">
+                <item type="command" commandRef="asm.addComponent"/>
+                <item type="command" commandRef="asm.constraint"/>
+                <item type="command" commandRef="asm.explode"/>
+            </toolBar>
+
+            <!-- Sheet metal toolbar -->
+            <toolBar id="tb_sheet" label="Sheet Metal" area="Top" order="50">
+                <item type="command" commandRef="sheet.baseFlange"/>
+                <item type="command" commandRef="sheet.edgeFlange"/>
+                <item type="command" commandRef="sheet.bend"/>
+                <item type="command" commandRef="sheet.unbend"/>
+                <item type="command" commandRef="sheet.flatten"/>
+            </toolBar>
+
+        </toolBars>
+
+    </classic-menus>
+
+</ToolBarConfig>

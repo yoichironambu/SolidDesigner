@@ -36,22 +36,22 @@ xcopy .\externals\3rdParty\bin\vcruntime140_app.dll %CURRENT_NEW_DIR%\x64\Debug 
 xcopy .\externals\3rdParty\bin\log4cplusU.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
 
 ::--Release
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Core.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Gui.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5OpenGL.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Widgets.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Network.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Core.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Gui.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5OpenGL.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Widgets.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Network.dll %CURRENT_NEW_DIR%\x64\Release /s /e /c /y /h /r
 
 ::----debug
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Core.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Gui.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5OpenGL.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Widgets.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
-xcopy C:\Qt\Qt5.13.2\5.13.2\msvc2015_64\bin\Qt5Network.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Core.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Gui.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5OpenGL.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Widgets.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
+xcopy C:\Qt\Qt5.15.14\5.15.14\msvc2019_64\bin\Qt5Network.dll %CURRENT_NEW_DIR%\x64\Debug /s /e /c /y /h /r
 
 ::拷贝source/resource目录下所有的资源到bin目录
-xcopy .\source\resource\*.*  %CURRENT_NEW_DIR%\x64\Release\   /s /h 
-xcopy .\source\resource\*.*  %CURRENT_NEW_DIR%\x64\Debug\   /s /h 
+xcopy .\Designer\Data\*.*  %CURRENT_NEW_DIR%\x64\Release\Data   /s /h 
+xcopy .\Designer\Data\*.*  %CURRENT_NEW_DIR%\x64\Debug\Data   /s /h 
 
 pause
 exit

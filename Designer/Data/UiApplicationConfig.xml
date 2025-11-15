@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UiApplicationConfig version="1.0" product="SolidDesigner">
-  <!-- 可把大块配置拆成子文件 -->
-  <Include href="Data\\splash.xml"/>
-
+  <!-- splash screen config file -->
+  <Include href="SplashScreenConfig.xml"/>
+  <!-- titlebar config file -->
+  <Include href="TitleBarConfig.xml"/>
+  <!-- toolbar config file -->
+  <Include href="ToolBarConfig.xml"/>
+  <!-- commands config file -->
+  <Include href="CommandsConfig.xml"/>
+  
   <Theme darkMode="true">
     <Palette base="#121212" text="#E0E0E0" accent="#FF9E00"/>
     <Font family="Microsoft YaHei" size="12" weight="500" italic="false"/>

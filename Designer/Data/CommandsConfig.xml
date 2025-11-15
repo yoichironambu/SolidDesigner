@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandsConfig version="1.0">
+
+    <!-- ========================================================= -->
+    <!-- 1. Command dictionary: all environments share these IDs   -->
+    <!-- ========================================================= -->
+    <commands>
+        <!-- ===== Edit commands ===== -->
+        <command id="edit.undo"
+                 label="Undo"
+                 tooltip="Undo last operation"
+                 category="edit"
+                 icon="icons/edit/undo.svg"
+                 gesture="Ctrl+Z"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="edit.redo"
+                 label="Redo"
+                 tooltip="Redo last undone operation"
+                 category="edit"
+                 icon="icons/edit/redo.svg"
+                 gesture="Ctrl+Y"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="edit.cut"
+                 label="Cut"
+                 tooltip="Cut selected items to clipboard"
+                 category="edit"
+                 icon="icons/edit/cut.svg"
+                 gesture="Ctrl+X"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="edit.copy"
+                 label="Copy"
+                 tooltip="Copy selected items to clipboard"
+                 category="edit"
+                 icon="icons/edit/copy.svg"
+                 gesture="Ctrl+C"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="edit.paste"
+                 label="Paste"
+                 tooltip="Paste items from clipboard"
+                 category="edit"
+                 icon="icons/edit/paste.svg"
+                 gesture="Ctrl+V"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="edit.delete"
+                 label="Delete"
+                 tooltip="Delete selected items"
+                 category="edit"
+                 icon="icons/edit/delete.svg"
+                 gesture="Del"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="edit.selectAll"
+                 label="Select All"
+                 tooltip="Select all objects"
+                 category="edit"
+                 icon="icons/edit/select_all.svg"
+                 gesture="Ctrl+A"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <!-- ===== UI built-in commands (wired to MainWindowQt) ===== -->
+        <command id="ui.toggleMode"
+                 label="Toggle Ribbon / Classic"
+                 tooltip="Switch between Ribbon and Classic menu modes"
+                 category="ui"
+                 icon="icons/ui/toggle_mode.svg"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="ui.saveLayout"
+                 label="Save Layout"
+                 tooltip="Save current window layout"
+                 category="ui"
+                 icon="icons/ui/save_layout.svg"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="ui.restoreLayout"
+                 label="Restore Layout"
+                 tooltip="Restore saved window layout"
+                 category="ui"
+                 icon="icons/ui/restore_layout.svg"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <!-- ===== Help commands ===== -->
+        <command id="help.contents"
+                 label="Help Contents"
+                 tooltip="Open help contents"
+                 category="help"
+                 icon="icons/help/contents.svg"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <command id="help.about"
+                 label="About"
+                 tooltip="Show about dialog"
+                 category="help"
+                 icon="icons/help/about.svg"
+                 environments="part,sketch,asm,sheet"/>
+	    
+        <!-- ===== Optional: Tools / Command line ===== -->
+        <command id="tools.commandLine"
+                 label="Command Line"
+                 tooltip="Open command line window"
+                 category="tools"
+                 icon="icons/tools/command_line.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <!-- ===== General: File / Window ===== -->
+        <command id="file.new"
+                 label="New"
+                 tooltip="Create a new document"
+                 category="file"
+                 icon="icons/file/new.svg"
+                 gesture="Ctrl+N"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="file.open"
+                 label="Open"
+                 tooltip="Open an existing document"
+                 category="file"
+                 icon="icons/file/open.svg"
+                 gesture="Ctrl+O"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="file.save"
+                 label="Save"
+                 tooltip="Save the active document"
+                 category="file"
+                 icon="icons/file/save.svg"
+                 gesture="Ctrl+S"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="file.saveAs"
+                 label="Save As"
+                 tooltip="Save the active document under a new name"
+                 category="file"
+                 icon="icons/file/save_as.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="file.close"
+                 label="Close"
+                 tooltip="Close the active window"
+                 category="file"
+                 icon="icons/file/close.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="file.exit"
+                 label="Exit"
+                 tooltip="Exit the application"
+                 category="file"
+                 icon="icons/file/exit.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="window.new"
+                 label="New Window"
+                 tooltip="Open a new document window"
+                 category="window"
+                 icon="icons/window/new_window.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="window.arrange"
+                 label="Arrange Windows"
+                 tooltip="Arrange all open windows"
+                 category="window"
+                 icon="icons/window/arrange.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="window.tileHorizontal"
+                 label="Tile Horizontally"
+                 tooltip="Tile all open windows horizontally"
+                 category="window"
+                 icon="icons/window/tile_horizontal.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <!-- ===== Part modeling: sketch entry / features / datums / direct edit ===== -->
+        <command id="sketch.new"
+                 label="Sketch"
+                 tooltip="Create a sketch on a selected plane or datum"
+                 category="sketch"
+                 icon="icons/sketch/new_sketch.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="sketch.edit"
+                 label="Edit Sketch"
+                 tooltip="Edit an existing sketch"
+                 category="sketch"
+                 icon="icons/sketch/edit_sketch.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="sketch.reuse"
+                 label="Reuse Sketch"
+                 tooltip="Reuse an existing sketch profile"
+                 category="sketch"
+                 icon="icons/sketch/reuse.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="sketch.mirror"
+                 label="Mirror Sketch"
+                 tooltip="Mirror sketch geometry"
+                 category="sketch"
+                 icon="icons/sketch/mirror.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="model.extrude"
+                 label="Extrude"
+                 tooltip="Create an extruded feature from sketches or curves"
+                 category="modeling"
+                 icon="icons/model/extrude.svg"
+                 gesture="Ctrl+E"
+                 environments="part,sheet"/>
+
+        <command id="model.revolve"
+                 label="Revolve"
+                 tooltip="Create a revolved feature around an axis"
+                 category="modeling"
+                 icon="icons/model/revolve.svg"
+                 gesture="Ctrl+R"
+                 environments="part,sheet"/>
+
+        <command id="model.hole"
+                 label="Hole"
+                 tooltip="Create standard hole features"
+                 category="modeling"
+                 icon="icons/model/hole.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.slot"
+                 label="Slot"
+                 tooltip="Create slot features"
+        <command id="model.chamfer"
+                 category="modeling"
+                 icon="icons/model/slot.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.chamfer"
+                 label="Chamfer"
+                 tooltip="Apply chamfers to edges"
+                 category="modeling"
+                 icon="icons/model/chamfer.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.fillet"
+                 label="Fillet"
+                 tooltip="Apply fillets to edges"
+                 category="modeling"
+                 icon="icons/model/fillet.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.shell"
+                 label="Shell"
+                 tooltip="Convert a solid body to a thin-walled shell"
+                 category="modeling"
+                 icon="icons/model/shell.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.draft"
+                 label="Draft"
+                 tooltip="Apply draft angles to faces"
+                 category="modeling"
+                 icon="icons/model/draft.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.boolean.union"
+                 label="Union"
+                 tooltip="Perform boolean union on selected bodies"
+                 category="boolean"
+                 icon="icons/model/boolean_union.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.boolean.subtract"
+                 label="Subtract"
+                 tooltip="Perform boolean subtraction between bodies"
+                 category="boolean"
+                 icon="icons/model/boolean_subtract.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.boolean.intersect"
+                 label="Intersect"
+                 tooltip="Perform boolean intersection between bodies"
+                 category="boolean"
+                 icon="icons/model/boolean_intersect.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.feature.suppress"
+                 label="Suppress Feature"
+                 tooltip="Temporarily suppress selected features"
+                 category="feature"
+                 icon="icons/model/feature_suppress.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.feature.unsuppress"
+                 label="Unsuppress Feature"
+                 tooltip="Restore suppressed features"
+                 category="feature"
+                 icon="icons/model/feature_unsuppress.svg"
+                 environments="part,sheet"/>
+
+        <command id="model.feature.delete"
+                 label="Delete Feature"
+                 tooltip="Permanently delete selected features"
+                 category="feature"
+                 icon="icons/model/feature_delete.svg"
+                 environments="part,sheet"/>
+
+        <command id="datum.plane"
+                 label="Datum Plane"
+                 tooltip="Create a datum plane"
+                 category="datum"
+                 icon="icons/datum/plane.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="datum.axis"
+                 label="Datum Axis"
+                 tooltip="Create a datum axis"
+                 category="datum"
+                 icon="icons/datum/axis.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="datum.cs"
+                 label="Coordinate System"
+                 tooltip="Create a coordinate system"
+                 category="datum"
+                 icon="icons/datum/cs.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="datum.point"
+                 label="Point"
+                 tooltip="Create a datum point"
+                 category="datum"
+                 icon="icons/datum/point.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="smove.face"
+                 label="Move Face"
+                 tooltip="Move or rotate selected faces"
+                 category="synchronous"
+                 icon="icons/synchronous/move_face.svg"
+                 environments="part,sheet"/>
+
+        <command id="synchronous.pull"
+                 label="Pull Face"
+                 tooltip="Modify the shape by dragging faces"
+                 category="synchronous"
+                 icon="icons/synchronous/pull.svg"
+                 environments="part,sheet"/>
+
+        <command id="synchronous.offsetRegion"
+                 label="Offset Region"
+                 tooltip="Offset local face regions"
+                 category="synchronous"
+                 icon="icons/synchronous/offset_region.svg"
+                 environments="part,sheet"/>
+
+        <command id="synchronous.deleteFace"
+                 label="Delete Face"
+                 tooltip="Delete faces and heal topology"
+                 category="synchronous"
+                 icon="icons/synchronous/delete_face.svg"
+                 environments="part,sheet"/>
+
+        <!-- ===== Curves / sketch geometry ===== -->
+        <command id="curve.line"
+                 label="Line"
+                 tooltip="Create lines"
+                 category="curve"
+                 icon="icons/curve/line.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="curve.arc"
+                 label="Arc"
+                 tooltip="Create arcs"
+                 category="curve"
+                 icon="icons/curve/arc.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="curve.circle"
+                 label="Circle"
+                 tooltip="Create circles"
+                 category="curve"
+                 icon="icons/curve/circle.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="curve.rectangle"
+                 label="Rectangle"
+                 tooltip="Create rectangles"
+                 category="curve"
+                 icon="icons/curve/rectangle.svg"
+                 environments="part,sketch,sheet"/>
+
+        <command id="curve.point"
+                 label="Point"
+                 tooltip="Create points"
+                 category="curve"
+                 icon="icons/curve/point.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="curve.splineThrough"
+                 label="Spline Through Points"
+                 tooltip="Create spline curves through points"
+                 category="curve"
+                 icon="icons/curve/spline_through.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="curve.fitSpline"
+                 label="Fit Spline"
+                 tooltip="Fit splines to existing geometry"
+                 category="curve"
+                 icon="icons/curve/fit_spline.svg"
+                 environments="part,sketch,sheet"/>
+
+        <command id="curve.studioSpline"
+                 label="Studio Spline"
+                 tooltip="Advanced spline creation and editing"
+                 category="curve"
+                 icon="icons/curve/studio_spline.svg"
+                 environments="part,sheet"/>
+
+        <command id="curve.trim"
+                 label="Trim Curve"
+                 tooltip="Trim curves"
+                 category="curve"
+                 icon="icons/curve/trim.svg"
+                 environments="part,sketch,sheet"/>
+
+        <command id="curve.extend"
+                 label="Extend Curve"
+                 tooltip="Extend curves"
+                 category="curve"
+                 icon="icons/curve/extend.svg"
+                 environments="part,sketch,sheet"/>
+
+        <command id="curve.join"
+                 label="Join Curves"
+                 tooltip="Join curves into a single entity"
+                 category="curve"
+                 icon="icons/curve/join.svg"
+                 environments="part,sketch,sheet"/>
+
+        <command id="curve.fillet"
+                 label="Curve Fillet"
+                 tooltip="Apply fillets between curves"
+                 category="curve"
+                 icon="icons/curve/fillet.svg"
+                 environments="part,sketch,sheet"/>
+
+        <command id="curve.offset"
+                 label="Offset Curve"
+                 tooltip="Offset curves"
+                 category="curve"
+                 icon="icons/curve/offset.svg"
+                 environments="part,sketch,sheet"/>
+
+        <!-- ===== Sketch-only: dimensions / constraints / modify ===== -->
+        <command id="sketch.dim.horizontal"
+                 label="Horizontal Dimension"
+                 tooltip="Create horizontal linear dimensions"
+                 category="sketch.dim"
+                 icon="icons/sketch/dim_horizontal.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.dim.vertical"
+                 label="Vertical Dimension"
+                 tooltip="Create vertical linear dimensions"
+                 category="sketch.dim"
+                 icon="icons/sketch/dim_vertical.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.dim.radius"
+                 label="Radius Dimension"
+                 tooltip="Create radius dimensions"
+                 category="sketch.dim"
+                 icon="icons/sketch/dim_radius.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.dim.diameter"
+                 label="Diameter Dimension"
+                 tooltip="Create diameter dimensions"
+                 category="sketch.dim"
+                 icon="icons/sketch/dim_diameter.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.dim.angle"
+                 label="Angular Dimension"
+                 tooltip="Create angular dimensions"
+                 category="sketch.dim"
+                 icon="icons/sketch/dim_angle.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.dim.general"
+                 label="Smart Dimension"
+                 tooltip="Create smart dimensions"
+                 category="sketch.dim"
+                 icon="icons/sketch/dim_smart.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.horizontal"
+                 label="Horizontal"
+                 tooltip="Apply horizontal constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_horizontal.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.vertical"
+                 label="Vertical"
+                 tooltip="Apply vertical constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_vertical.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.parallel"
+                 label="Parallel"
+                 tooltip="Apply parallel constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_parallel.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.perpendicular"
+                 label="Perpendicular"
+                 tooltip="Apply perpendicular constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_perp.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.tangent"
+                 label="Tangent"
+                 tooltip="Apply tangent constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_tangent.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.coincident"
+                 label="Coincident"
+                 tooltip="Apply coincident constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_coincident.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.equal"
+                 label="Equal"
+                 tooltip="Apply equal length or equal radius constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_equal.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.symmetric"
+                 label="Symmetric"
+                 tooltip="Apply symmetry constraint"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_symmetric.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.constraint.fix"
+                 label="Fix"
+                 tooltip="Fix elements in place"
+                 category="sketch.constraint"
+                 icon="icons/sketch/constr_fix.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.modify.trim"
+                 label="Trim"
+                 tooltip="Trim sketch geometry"
+                 category="sketch.modify"
+                 icon="icons/sketch/trim.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.modify.extend"
+                 label="Extend"
+                 tooltip="Extend sketch geometry"
+                 category="sketch.modify"
+                 icon="icons/sketch/extend.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.modify.fillet"
+                 label="Fillet"
+                 tooltip="Create sketch fillets"
+                 category="sketch.modify"
+                 icon="icons/sketch/fillet.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.modify.offset"
+                 label="Offset"
+                 tooltip="Offset sketch geometry"
+                 category="sketch.modify"
+                 icon="icons/sketch/offset.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.modify.mirror"
+                 label="Mirror"
+                 tooltip="Mirror sketch entities"
+                 category="sketch.modify"
+                 icon="icons/sketch/mirror.svg"
+                 environments="sketch"/>
+
+        <command id="sketch.modify.pattern"
+                 label="Pattern"
+                 tooltip="Pattern sketch entities"
+                 category="sketch.modify"
+                 icon="icons/sketch/pattern.svg"
+                 environments="sketch"/>
+
+        <!-- ===== Assembly: components / constraints / exploded views ===== -->
+        <command id="asm.addComponent"
+                 label="Add Component"
+                 tooltip="Add existing parts to the assembly"
+                 category="assembly"
+                 icon="icons/asm/add_component.svg"
+                 environments="asm,part"/>
+
+        <command id="asm.newComponent"
+                 label="New Component"
+                 tooltip="Create a new part in the assembly"
+                 category="assembly"
+                 icon="icons/asm/new_component.svg"
+                 environments="asm"/>
+
+        <command id="asm.replaceComponent"
+                 label="Replace Component"
+                 tooltip="Replace components in the assembly"
+                 category="assembly"
+                 icon="icons/asm/replace_component.svg"
+                 environments="asm"/>
+
+        <command id="asm.arrange"
+                 label="Arrange Components"
+                 tooltip="Automatically arrange assembly components"
+                 category="assembly"
+                 icon="icons/asm/arrange.svg"
+                 environments="asm"/>
+
+        <command id="asm.constraint"
+                 label="Assembly Constraints"
+                 tooltip="Create assembly constraints"
+                 category="assembly"
+                 icon="icons/asm/constraint.svg"
+                 environments="asm"/>
+
+        <command id="asm.align"
+                 label="Align"
+                 tooltip="Create alignment constraints"
+                 category="assembly"
+                 icon="icons/asm/align.svg"
+                 environments="asm"/>
+
+        <command id="asm.mate"
+                 label="Mate"
+                 tooltip="Create mating constraints"
+                 category="assembly"
+                 icon="icons/asm/mate.svg"
+                 environments="asm"/>
+
+        <command id="asm.distance"
+                 label="Distance"
+                 tooltip="Create distance constraints"
+                 category="assembly"
+                 icon="icons/asm/distance.svg"
+                 environments="asm"/>
+
+        <command id="asm.explode"
+                 label="Exploded View"
+                 tooltip="Create an exploded assembly view"
+                 category="assembly"
+                 icon="icons/asm/explode.svg"
+                 environments="asm"/>
+
+        <command id="asm.unexplode"
+                 label="Collapse"
+                 tooltip="Restore the non-exploded assembly state"
+                 category="assembly"
+                 icon="icons/asm/unexplode.svg"
+                 environments="asm"/>
+
+        <!-- ===== Sheet Metal: base / flanges / bends / flat pattern ===== -->
+        <command id="sheet.baseFlange"
+                 label="Base Flange"
+                 tooltip="Create a base flange for a sheet metal part"
+                 category="sheet"
+                 icon="icons/sheet/base_flange.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.tab"
+                 label="Tab"
+                 tooltip="Create additional tab features"
+                 category="sheet"
+                 icon="icons/sheet/tab.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.edgeFlange"
+                 label="Edge Flange"
+                 tooltip="Create flanges along edges"
+                 category="sheet"
+                 icon="icons/sheet/edge_flange.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.contourFlange"
+                 label="Contour Flange"
+                 tooltip="Create flanges along a sketch contour"
+                 category="sheet"
+                 icon="icons/sheet/contour_flange.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.loftedFlange"
+                 label="Lofted Flange"
+                 tooltip="Create lofted sheet metal flanges between profiles"
+                 category="sheet"
+                 icon="icons/sheet/lofted_flange.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.bend"
+                 label="Bend"
+                 tooltip="Create bends in sheet metal"
+                 category="sheet"
+                 icon="icons/sheet/bend.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.unbend"
+                 label="Unbend"
+                 tooltip="Unbend bends to a flat state"
+                 category="sheet"
+                 icon="icons/sheet/unbend.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.rebend"
+                 label="Rebend"
+                 tooltip="Rebend previously unbent features"
+                 category="sheet"
+                 icon="icons/sheet/rebend.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.jog"
+                 label="Jog"
+                 tooltip="Create jog features"
+                 category="sheet"
+                 icon="icons/sheet/jog.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.cutout"
+                 label="Cutout"
+                 tooltip="Create sheet metal cutouts"
+                 category="sheet"
+                 icon="icons/sheet/cutout.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.hole"
+                 label="Hole"
+                 tooltip="Create holes in sheet metal"
+                 category="sheet"
+                 icon="icons/sheet/hole.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.cornerRelief"
+                 label="Corner Relief"
+                 tooltip="Add corner reliefs at intersections"
+                 category="sheet"
+                 icon="icons/sheet/corner_relief.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.breakCorner"
+                 label="Break Corner"
+                 tooltip="Chamfer or round sheet metal corners"
+                 category="sheet"
+                 icon="icons/sheet/break_corner.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.flatten"
+                 label="Flat Pattern"
+                 tooltip="Generate a flat pattern of the sheet metal part"
+                 category="sheet"
+                 icon="icons/sheet/flatten.svg"
+                 environments="sheet"/>
+
+        <command id="sheet.exportFlat"
+                 label="Export Flat"
+                 tooltip="Export flat pattern to DXF or similar formats"
+                 category="sheet"
+                 icon="icons/sheet/export_flat.svg"
+                 environments="sheet"/>
+
+        <!-- ===== Measure / Analysis ===== -->
+        <command id="measure.distance"
+                 label="Distance"
+                 tooltip="Measure distance between points or entities"
+                 category="measure"
+                 icon="icons/measure/distance.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="measure.angle"
+                 label="Angle"
+                 tooltip="Measure angle between entities"
+                 category="measure"
+                 icon="icons/measure/angle.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="measure.radius"
+                 label="Radius"
+                 tooltip="Measure circle or arc radius"
+                 category="measure"
+                 icon="icons/measure/radius.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="measure.massProps"
+                 label="Mass Properties"
+                 tooltip="Compute mass, volume, and center of gravity"
+                 category="measure"
+                 icon="icons/measure/mass_props.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="measure.dialog"
+                 label="Measure Dialog"
+                 tooltip="Open the measure dialog"
+                 category="measure"
+                 icon="icons/measure/dialog.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="measure.section"
+                 label="Section Measurement"
+                 tooltip="Measure via section views"
+                 category="measure"
+                 icon="icons/measure/section.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="measure.draft"
+                 label="Draft Analysis"
+                 tooltip="Analyze draft angles"
+                 category="measure"
+                 icon="icons/measure/draft.svg"
+                 environments="part,sheet"/>
+
+        <command id="analysis.bodyCheck"
+                 label="Body Check"
+                 tooltip="Check body validity and errors"
+                 category="analysis"
+                 icon="icons/analysis/body_check.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="analysis.interference"
+                 label="Interference Check"
+                 tooltip="Check interference between components"
+                 category="analysis"
+                 icon="icons/analysis/interference.svg"
+                 environments="asm"/>
+
+        <command id="analysis.mass"
+                 label="Mass Analysis"
+                 tooltip="Analyze mass and center of gravity"
+                 category="analysis"
+                 icon="icons/analysis/mass.svg"
+                 environments="part,asm,sheet"/>
+
+        <!-- ===== View / Display / Selection ===== -->
+        <command id="view.trimetric"
+                 label="Trimetric"
+                 tooltip="Switch to trimetric view"
+                 category="view"
+                 icon="icons/view/trimetric.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="view.top"
+                 label="Top"
+                 tooltip="Switch to top view"
+                 category="view"
+                 icon="icons/view/top.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="view.front"
+                 label="Front"
+                 tooltip="Switch to front view"
+                 category="view"
+                 icon="icons/view/front.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="view.right"
+                 label="Right"
+                 tooltip="Switch to right view"
+                 category="view"
+                 icon="icons/view/right.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="view.dynamicSection"
+                 label="Dynamic Section"
+                 tooltip="Create and manipulate dynamic sections"
+                 category="view"
+                 icon="icons/view/dynamic_section.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="view.clippingPlane"
+                 label="Clipping Plane"
+                 tooltip="Enable clipping planes"
+                 category="view"
+                 icon="icons/view/clipping_plane.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="display.shaded"
+                 label="Shaded"
+                 tooltip="Display shaded model"
+                 category="display"
+                 icon="icons/display/shaded.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="display.shadedWithEdges"
+                 label="Shaded with Edges"
+                 tooltip="Display shaded model with edges"
+                 category="display"
+                 icon="icons/display/shaded_edges.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="display.wireframe"
+                 label="Wireframe"
+                 tooltip="Display in wireframe mode"
+                 category="display"
+                 icon="icons/display/wireframe.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="display.hiddenLine"
+                 label="Hidden Line"
+                 tooltip="Display with hidden line removal"
+                 category="display"
+                 icon="icons/display/hidden_line.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="display.show"
+                 label="Show"
+                 tooltip="Show hidden objects"
+                 category="display"
+                 icon="icons/display/show.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="display.hide"
+                 label="Hide"
+                 tooltip="Hide selected objects"
+                 category="display"
+                 icon="icons/display/hide.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="display.isolate"
+                 label="Isolate"
+                 tooltip="Isolate selected objects"
+                 category="display"
+                 icon="icons/display/isolate.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="select.filter"
+                 label="Selection Filter"
+                 tooltip="Set the selection filter"
+                 category="selection"
+                 icon="icons/select/filter.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="select.single"
+                 label="Single Select"
+                 tooltip="Select a single object"
+                 category="selection"
+                 icon="icons/select/single.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="select.rectangle"
+                 label="Rectangle Select"
+                 tooltip="Select objects with a rectangular window"
+                 category="selection"
+                 icon="icons/select/rectangle.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="select.lasso"
+                 label="Lasso Select"
+                 tooltip="Select objects with a lasso"
+                 category="selection"
+                 icon="icons/select/lasso.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <!-- ===== Tools / Journal / Expressions / Python ===== -->
+        <command id="tools.expressions"
+                 label="Expressions"
+                 tooltip="Open the expression manager"
+                 category="tools"
+                 icon="icons/tools/expressions.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="tools.journal.record"
+                 label="Record Journal"
+                 tooltip="Start recording an operation journal"
+                 category="tools"
+                 icon="icons/tools/journal_record.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="tools.journal.play"
+                 label="Play Journal"
+                 tooltip="Play back a recorded journal"
+                 category="tools"
+                 icon="icons/tools/journal_play.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="tools.journal.pause"
+                 label="Pause Journal"
+                 tooltip="Pause or resume journal recording"
+                 category="tools"
+                 icon="icons/tools/journal_pause.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="tools.pythonConsole"
+                 label="Python Console"
+                 tooltip="Open the Python console"
+                 category="tools"
+                 icon="icons/tools/python_console.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <!-- ===== Application switching ===== -->
+        <command id="app.switch.partModeling"
+                 label="Part Modeling"
+                 tooltip="Switch to the part modeling environment"
+                 category="application"
+                 icon="icons/app/part_modeling.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="app.switch.assembly"
+                 label="Assembly Design"
+                 tooltip="Switch to the assembly environment"
+                 category="application"
+                 icon="icons/app/assembly.svg"
+                 environments="part,asm"/>
+
+        <command id="app.switch.sheetMetal"
+                 label="Sheet Metal Design"
+                 tooltip="Switch to the sheet metal environment"
+                 category="application"
+                 icon="icons/app/sheet_metal.svg"
+                 environments="part,sheet"/>
+
+        <command id="app.switch.sketch"
+                 label="Sketch Environment"
+                 tooltip="Switch to the sketch environment"
+                 category="application"
+                 icon="icons/app/sketch.svg"
+                 environments="part,sketch,asm,sheet"/>
+
+        <command id="app.switch.bim"
+                 label="BIM"
+                 tooltip="Switch to the BIM environment"
+                 category="application"
+                 icon="icons/app/bim.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="app.switch.ship"
+                 label="Ship Design"
+                 tooltip="Switch to the ship design environment"
+                 category="application"
+                 icon="icons/app/ship.svg"
+                 environments="part,asm,sheet"/>
+
+        <!-- ===== GC toolbox (your own module) ===== -->
+        <command id="gc.stdPartLibrary"
+                 label="Standard Parts Library"
+                 tooltip="Open the standard parts library"
+                 category="gc"
+                 icon="icons/gc/std_part_library.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="gc.checkUpdate"
+                 label="Check for Updates"
+                 tooltip="Check for software updates"
+                 category="gc"
+                 icon="icons/gc/check_update.svg"
+                 environments="part,asm,sheet"/>
+
+        <command id="gc.settings"
+                 label="GC Settings"
+                 tooltip="Open GC settings"
+                 category="gc"
+                 icon="icons/gc/settings.svg"
+                 environments="part,asm,sheet"/>
+
+    </commands>
+
+</CommandsConfig>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TitleBarConfig version="1.0">
+
+    <!-- ========================================================= -->
+    <!-- Title bar declarations                                   -->
+    <!-- ========================================================= -->
+    <titlebars>
+        <!-- Part / Modeling -->
+        <titlebar id="sd.part.titlebar"
+                  workbench="Part"
+                  label="SD Part TitleBar"/>
+
+        <!-- Sketch-in-Part / Sketch environment -->
+        <titlebar id="sd.sketch.titlebar"
+                  workbench="Sketch"
+                  label="SD Sketch TitleBar"/>
+
+        <!-- Assembly -->
+        <titlebar id="sd.asm.titlebar"
+                  workbench="Assembly"
+                  label="SD Assembly TitleBar"/>
+
+        <!-- Sheet Metal -->
+        <titlebar id="sd.sheet.titlebar"
+                  workbench="SheetMetal"
+                  label="SD Sheet Metal TitleBar"/>
+    </titlebars>
+
+
+    <!-- ========================================================= -->
+    <!-- Title bar layouts                                         -->
+    <!-- ========================================================= -->
+    <titlebar-layouts>
+
+        <!-- ===================== Part / Modeling ===================== -->
+        <layout titlebar="sd.part.titlebar">
+
+            <!-- Left area: quick access commands -->
+            <area id="left" order="10">
+                <!-- File button (opens big "File" dialog / backstage) -->
+                <control type="file-button"
+                         commandRef="ui.fileMenu"
+                         order="5"
+                         icon="icons/ui/file_menu.svg"
+                         label="File"/>
+
+                <!-- Undo / Redo -->
+                <control type="command-button"
+                         commandRef="edit.undo"
+                         order="10"/>
+                <control type="command-button"
+                         commandRef="edit.redo"
+                         order="20"/>
+
+                <!-- Clipboard -->
+                <control type="command-button"
+                         commandRef="edit.cut"
+                         order="30"/>
+                <control type="command-button"
+                         commandRef="edit.copy"
+                         order="40"/>
+                <control type="command-button"
+                         commandRef="edit.paste"
+                         order="50"/>
+
+                <!-- Drag between windows -->
+                <control type="command-button"
+                         commandRef="window.dragBetween"
+                         order="60"/>
+
+                <!-- Minimize ribbon -->
+                <control type="command-button"
+                         commandRef="ui.minimizeRibbon"
+                         order="70"/>
+
+                <!-- Speech recognition -->
+                <control type="command-button"
+                         commandRef="ui.speechRecognition"
+                         order="80"/>
+
+                <!-- Touch mode -->
+                <control type="command-button"
+                         commandRef="ui.touchMode"
+                         order="90"/>
+
+                <!-- Switch window / Window menu / Toolbar options -->
+                <control type="command-button"
+                         commandRef="window.switch"
+                         order="100"/>
+                <control type="command-button"
+                         commandRef="window.menu"
+                         order="110"/>
+                <control type="command-button"
+                         commandRef="ui.toolbarOptions"
+                         order="120"/>
+            </area>
+
+            <!-- Center area: document title & environment label -->
+            <area id="center" order="20">
+                <!-- These are not commands but data bindings -->
+                <control type="label"
+                         id="label.documentTitle"
+                         binding="document.title"
+                         format="%document%"/>
+                <control type="label"
+                         id="label.workbench"
+                         binding="workbench.displayName"
+                         format=" - %workbench%"/>
+            </area>
+
+            <!-- Right area: brand + window buttons -->
+            <area id="right" order="30">
+                <!-- Brand button: SIEMENS / Alice logo -->
+                <control type="brand-button"
+                         commandRef="ui.brandMenu"
+                         order="5"
+                         icon="icons/brand/siemens.svg"
+                         tooltip="Product information"/>
+
+                <!-- Window system buttons -->
+                <control type="window-button"
+                         commandRef="ui.window.minimize"
+                         order="10"
+                         role="minimize"/>
+                <control type="window-button"
+                         commandRef="ui.window.restore"
+                         order="20"
+                         role="restore"/>
+                <control type="window-button"
+                         commandRef="ui.window.close"
+                         order="30"
+                         role="close"/>
+            </area>
+        </layout>
+
+        <!-- ===================== Sketch ===================== -->
+        <layout titlebar="sd.sketch.titlebar">
+
+            <area id="left" order="10">
+                <control type="file-button"
+                         commandRef="ui.fileMenu"
+                         order="5"
+                         icon="icons/ui/file_menu.svg"
+                         label="File"/>
+
+                <control type="command-button"
+                         commandRef="edit.undo"
+                         order="10"/>
+                <control type="command-button"
+                         commandRef="edit.redo"
+                         order="20"/>
+
+                <!-- Sketch frequently used commands -->
+                <control type="command-button"
+                         commandRef="sketch.finish"
+                         order="30"/>
+                <control type="command-button"
+                         commandRef="sketch.cancel"
+                         order="40"/>
+
+                <control type="command-button"
+                         commandRef="ui.minimizeRibbon"
+                         order="70"/>
+                <control type="command-button"
+                         commandRef="ui.touchMode"
+                         order="80"/>
+            </area>
+
+            <area id="center" order="20">
+                <control type="label"
+                         id="label.documentTitle"
+                         binding="document.title"
+                         format="%document%"/>
+                <control type="label"
+                         id="label.workbench"
+                         binding="workbench.displayName"
+                         format=" - %workbench%"/>
+            </area>
+
+            <area id="right" order="30">
+                <control type="brand-button"
+                         commandRef="ui.brandMenu"
+                         order="5"
+                         icon="icons/brand/siemens.svg"
+                         tooltip="Product information"/>
+
+                <control type="window-button"
+                         commandRef="ui.window.minimize"
+                         order="10"
+                         role="minimize"/>
+                <control type="window-button"
+                         commandRef="ui.window.restore"
+                         order="20"
+                         role="restore"/>
+                <control type="window-button"
+                         commandRef="ui.window.close"
+                         order="30"
+                         role="close"/>
+            </area>
+        </layout>
+
+        <!-- ===================== Assembly ===================== -->
+        <layout titlebar="sd.asm.titlebar">
+
+            <area id="left" order="10">
+                <control type="file-button"
+                         commandRef="ui.fileMenu"
+                         order="5"
+                         icon="icons/ui/file_menu.svg"
+                         label="File"/>
+
+                <control type="command-button"
+                         commandRef="edit.undo"
+                         order="10"/>
+                <control type="command-button"
+                         commandRef="edit.redo"
+                         order="20"/>
+
+                <!-- Assembly often used -->
+                <control type="command-button"
+                         commandRef="asm.addComponent"
+                         order="30"/>
+                <control type="command-button"
+                         commandRef="asm.constraint"
+                         order="40"/>
+
+                <control type="command-button"
+                         commandRef="ui.minimizeRibbon"
+                         order="70"/>
+                <control type="command-button"
+                         commandRef="window.switch"
+                         order="80"/>
+            </area>
+
+            <area id="center" order="20">
+                <control type="label"
+                         id="label.documentTitle"
+                         binding="document.title"
+                         format="%document%"/>
+                <control type="label"
+                         id="label.workbench"
+                         binding="workbench.displayName"
+                         format=" - %workbench%"/>
+            </area>
+
+            <area id="right" order="30">
+                <control type="brand-button"
+                         commandRef="ui.brandMenu"
+                         order="5"
+                         icon="icons/brand/siemens.svg"
+                         tooltip="Product information"/>
+
+                <control type="window-button"
+                         commandRef="ui.window.minimize"
+                         order="10"
+                         role="minimize"/>
+                <control type="window-button"
+                         commandRef="ui.window.restore"
+                         order="20"
+                         role="restore"/>
+                <control type="window-button"
+                         commandRef="ui.window.close"
+                         order="30"
+                         role="close"/>
+            </area>
+        </layout>
+
+        <!-- ===================== Sheet Metal ===================== -->
+        <layout titlebar="sd.sheet.titlebar">
+
+            <area id="left" order="10">
+                <control type="file-button"
+                         commandRef="ui.fileMenu"
+                         order="5"
+                         icon="icons/ui/file_menu.svg"
+                         label="File"/>
+
+                <control type="command-button"
+                         commandRef="edit.undo"
+                         order="10"/>
+                <control type="command-button"
+                         commandRef="edit.redo"
+                         order="20"/>
+
+                <!-- Sheet metal hot commands -->
+                <control type="command-button"
+                         commandRef="sheet.baseFlange"
+                         order="30"/>
+                <control type="command-button"
+                         commandRef="sheet.edgeFlange"
+                         order="40"/>
+
+                <control type="command-button"
+                         commandRef="ui.minimizeRibbon"
+                         order="70"/>
+                <control type="command-button"
+                         commandRef="window.switch"
+                         order="80"/>
+            </area>
+
+            <area id="center" order="20">
+                <control type="label"
+                         id="label.documentTitle"
+                         binding="document.title"
+                         format="%document%"/>
+                <control type="label"
+                         id="label.workbench"
+                         binding="workbench.displayName"
+                         format=" - %workbench%"/>
+            </area>
+
+            <area id="right" order="30">
+                <control type="brand-button"
+                         commandRef="ui.brandMenu"
+                         order="5"
+                         icon="icons/brand/siemens.svg"
+                         tooltip="Product information"/>
+
+                <control type="window-button"
+                         commandRef="ui.window.minimize"
+                         order="10"
+                         role="minimize"/>
+                <control type="window-button"
+                         commandRef="ui.window.restore"
+                         order="20"
+                         role="restore"/>
+                <control type="window-button"
+                         commandRef="ui.window.close"
+                         order="30"
+                         role="close"/>
+            </area>
+        </layout>
+
+    </titlebar-layouts>
+</TitleBarConfig>
