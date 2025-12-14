@@ -8,9 +8,9 @@ message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDesignerCommand--*--*
 add_definitions(-DSOLID_DESIGNER_UI_HOME)
 add_definitions(-DSOLID_DESIGNER_COMMAND_HOME)
 
-
+message("CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 # 先指定你项目内置的 Python 解释器
-set(_SD_PY_ROOT "${CMAKE_SOURCE_DIR}/SolidDesigner/ToolChain/Python310")
+set(_SD_PY_ROOT "${CMAKE_SOURCE_DIR}/ToolChain/Python310")
 set(Python3_EXECUTABLE "${_SD_PY_ROOT}/python.exe" CACHE FILEPATH "SolidDesigner bundled Python" FORCE)
 
 # 然后再找 Python3
@@ -109,9 +109,12 @@ endif()
 #-----------------------------------------------------------------------------
 # Automatically generate SolidDesignerCommands.h
 #-----------------------------------------------------------------------------
-set(COMMANDS_XML  ${PROJECT_SOURCE_DIR}/Data/CommandsConfig.xml)
+set(COMMANDS_XML  ${PROJECT_SOURCE_DIR}/Designer/Data/CommandsConfig.xml)
 set(COMMANDS_HDR  ${PROJECT_SOURCE_DIR}/Designer/UI/SolidDesignerCommand/SolidDesignerCommands.h)
-set(COMMANDS_PY   ${CMAKE_SOURCE_DIR}/tools/generate_solid_designer_commands.py)
+set(COMMANDS_PY   ${CMAKE_SOURCE_DIR}/Designer/Data/Scripts/generate_solid_designer_commands.py)
+
+message(STATUS "COMMANDS_XML = ${COMMANDS_XML}")
+message(STATUS "COMMANDS_PY  = ${COMMANDS_PY}")
 
 add_custom_command(
   OUTPUT  ${COMMANDS_HDR}
