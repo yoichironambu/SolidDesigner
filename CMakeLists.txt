@@ -63,7 +63,6 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE debug)
 endif()
 
-set(CMAKE_EXE_LINKER_FLAGS "/machine:x64")
 
 if(MSVC)
     add_definitions(-DUNICODE -D_UNICODE)

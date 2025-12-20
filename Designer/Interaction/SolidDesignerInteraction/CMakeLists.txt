@@ -42,8 +42,6 @@ set_target_properties(SolidDesignerInteraction PROPERTIES FOLDER "Designer/Inter
 # 根据系统及机器位数设置链接的位数
 # 必须放在link之后,否则设置无效
 #-----------------------------------------------------------------------------
-set(CMAKE_SHARED_LINKER_FLAGS "/machine:x64")
-
 
 if(WIN32)
     # include the major version number in Windows shared library names (but not import library names)
