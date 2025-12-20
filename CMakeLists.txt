@@ -63,7 +63,6 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE debug)
 endif()
 
-set(CMAKE_EXE_LINKER_FLAGS "/machine:x64")
 
 if(MSVC)
     add_definitions(-DUNICODE -D_UNICODE)
@@ -111,25 +110,31 @@ endif()
 #-----------------------------------------------------------------------------
 # 定义项目构建中间文件的生成目录
 #-----------------------------------------------------------------------------
-set(CMAKE_GENERATOR_PLATFORM x64)
-if(SOLIDRENDER_WIN)
-    if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "x64")
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x64/Debug)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x64/Debug)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x64/Debug)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x64/Release)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x64/Release)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x64/Release)
-    endif()
+# 用指针位数决定输出目录：x64 / x86
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(SD_ARCH "x64")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+  set(SD_ARCH "x86")
+else()
+  message(FATAL_ERROR "Unknown pointer size: ${CMAKE_SIZEOF_VOID_P}")
+endif()
 
-    if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "Win32")
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x86/Debug)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x86/Debug)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x86/Debug)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x86/Release)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x86/Release)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x86/Release)
-    endif()
+# Linux 侧需要 GNUInstallDirs 提供 CMAKE_INSTALL_LIBDIR/BINDIR
+if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
+endif()
+
+# 防止误开关：Linux 下不允许走 SOLIDRENDER_WIN 分支
+if(SOLIDRENDER_WIN AND NOT WIN32)
+  message(FATAL_ERROR "SOLIDRENDER_WIN=ON but WIN32=OFF. Disable SOLIDRENDER_WIN on Linux.")
+endif()
+if(SOLIDRENDER_WIN)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
 
 elseif(SOLIDRENDER_LINUX)  
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
@@ -237,7 +242,7 @@ endif()
 add_subdirectory(Alice)
 
 # 外部项目(包括第三方库)
-add_subdirectory(externals)
+add_subdirectory(Externals)
 
 # 单元测试
 add_subdirectory(UnitTest)
@@ -251,5 +256,79 @@ else()
 endif()
 
 
+
+
+
+
+#-----------------------------------------------------------------------------
+# Installation
+#-----------------------------------------------------------------------------
+
+
+# 用指针位数决定输出目录：x64 / x86
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(SD_ARCH "x64")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+  set(SD_ARCH "x86")
+else()
+  message(FATAL_ERROR "Unknown pointer size: ${CMAKE_SIZEOF_VOID_P}")
+endif()
+
+# Linux 侧需要 GNUInstallDirs 提供 CMAKE_INSTALL_LIBDIR/BINDIR
+if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
+endif()
+
+# 防止误开关：Linux 下不允许走 SOLIDRENDER_WIN 分支
+if(SOLIDRENDER_WIN AND NOT WIN32)
+  message(FATAL_ERROR "SOLIDRENDER_WIN=ON but WIN32=OFF. Disable SOLIDRENDER_WIN on Linux.")
+endif()
+
+# 测试target的存在性：
+if(TARGET AliceCommandSystem)
+  message(STATUS "AliceCommandSystem exists in APP scope")
+else()
+  message(STATUS "AliceCommandSystem NOT exists in APP scope")
+endif()
+
+
+# 建议：统一一个安装目的地根目录（你现在是 INSTALL_DIR/INSTALL）
+set(SD_INSTALL_DST "${INSTALL_DIR}/INSTALL")
+message("SD_INSTALL_DST = ${SD_INSTALL_DST}")
+# 需要安装的目标列表
+set(SD_INSTALL_TARGETS
+    AliceCommandSystem
+    AlicePropertyBrowser
+    AliceRibbon
+    AliceThemeSupport
+    AliceUiBasicTools
+    AliceUiFrameWork
+    XRibbonBar
+    XToolbar
+)
+
+# 可选：提前检查 target 是否存在（更容易定位问题）
+foreach(_t IN LISTS SD_INSTALL_TARGETS)
+    if(NOT TARGET ${_t})
+        message(FATAL_ERROR "Install target not found: ${_t}")
+    endif()
+endforeach()
+
+# Windows：必须加 WIN32，避免 Linux/Makefiles 被污染
+if(WIN32 AND SOLIDRENDER_WIN)
+    install(TARGETS ${SD_INSTALL_TARGETS}
+        RUNTIME DESTINATION "${SD_INSTALL_DST}"   # .exe / .dll
+        ARCHIVE DESTINATION "${SD_INSTALL_DST}"   # .lib（静态库或 import lib）
+        LIBRARY DESTINATION "${SD_INSTALL_DST}"   # MinGW: .dll.a；MSVC 通常为空
+    )
+
+# Linux：同样用 TARGETS，CMake 会把 .so 走到 LIBRARY
+elseif(UNIX AND NOT APPLE AND SOLIDRENDER_LINUX)
+    install(TARGETS ${SD_INSTALL_TARGETS}
+        RUNTIME DESTINATION "${SD_INSTALL_DST}"   # 通常为空（除非是可执行文件）
+        LIBRARY DESTINATION "${SD_INSTALL_DST}"   # .so
+        ARCHIVE DESTINATION "${SD_INSTALL_DST}"   # .a
+    )
+endif()
 
 message("*--*--*--*--*--*--*--*--*--*--*--End Top Level CmakeList--*--*--*--*--*--*--*--*--*--*--*--*--*")

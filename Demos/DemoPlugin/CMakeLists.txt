@@ -52,26 +52,31 @@ include_directories(${PROJECT_SOURCE_DIR}/Demos/DemoPlugin/Public)
 # 定义项目构建中间文件的生成目录
 #-----------------------------------------------------------------------------
 message("${CMAKE_BINARY_DIR}")
-set(CMAKE_GENERATOR_PLATFORM x64)
-if(SOLIDRENDER_WIN)
-    message("It is configuring the dir of output")
-    if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "x64")
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x64/Debug)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x64/Debug)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x64/Debug/Plugins)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x64/Release)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x64/Release)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x64/Release/Plugins)
-    endif()
+# 用指针位数决定输出目录：x64 / x86
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(SD_ARCH "x64")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+  set(SD_ARCH "x86")
+else()
+  message(FATAL_ERROR "Unknown pointer size: ${CMAKE_SIZEOF_VOID_P}")
+endif()
 
-    if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "Win32")
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x86/Debug)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x86/Debug)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/x86/Debug/Plugins)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x86/Release)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x86/Release)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/x86/Release/Plugins)
-    endif()
+# Linux 侧需要 GNUInstallDirs 提供 CMAKE_INSTALL_LIBDIR/BINDIR
+if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
+endif()
+
+# 防止误开关：Linux 下不允许走 SOLIDRENDER_WIN 分支
+if(SOLIDRENDER_WIN AND NOT WIN32)
+  message(FATAL_ERROR "SOLIDRENDER_WIN=ON but WIN32=OFF. Disable SOLIDRENDER_WIN on Linux.")
+endif()
+if(SOLIDRENDER_WIN)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug/Plugins)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release/Plugins)
 
 elseif(SOLIDRENDER_LINUX)  
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
@@ -93,8 +98,6 @@ set_target_properties(SolidDemoPlugin PROPERTIES FOLDER "Demos")
 # 根据系统及机器位数设置链接的位数
 # 必须放在link之后,否则设置无效
 #-----------------------------------------------------------------------------
-set(CMAKE_SHARED_LINKER_FLAGS "/machine:x64")
-
 
 if(WIN32)
     # include the major version number in Windows shared library names (but not import library names)
