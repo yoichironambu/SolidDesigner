@@ -12,9 +12,9 @@ if(WIN32)
     set(Python3_EXECUTABLE "${_SD_PY_ROOT}/python.exe" CACHE FILEPATH "SolidDesigner bundled Python" FORCE)
 else()
     message("Here is linux python... ...")
-   # Linux/macOS: use system python3
-    #find_program(_PY3 NAMES python3 python REQUIRED)
-    #set(Python3_EXECUTABLE "${_PY3}" CACHE FILEPATH "Python3 interpreter" FORCE)
+    # Linux/macOS: use system python3
+    find_program(_PY3 NAMES python3 python REQUIRED)
+    set(Python3_EXECUTABLE "${_PY3}" CACHE FILEPATH "Python3 interpreter" FORCE)
 
 endif()
 

@@ -150,15 +150,39 @@ target_compile_definitions(${PROJECT_NAME}
 
 
  # 定义：如何生成 .rcc
+ if(WIN32)
 add_custom_command(OUTPUT "${SD_RCC_FILE}"
   COMMAND ${CMAKE_COMMAND} -E make_directory "${SD_RCC_DIR}"
   COMMAND ${CMAKE_COMMAND} -E echo ">>> GenerateRCC: ${GEN_RCC_BAT} -> ${SD_RCC_FILE}"
-  COMMAND ${CMAKE_COMMAND} -E env "QTDIR_X64=$ENV{QTDIR_X64}" "${GEN_RCC_BAT}" "${SD_RCC_DIR}"
+  COMMAND ${CMAKE_COMMAND} -E env "QTDIR_X64=$ENV{QTDIR_X64}" "${GEN_RCC_BAT}" "${SD_RCC_DIR}" #real execution
 
   WORKING_DIRECTORY "${GEN_RCC_WD}"
   DEPENDS ${SD_QRCS}           # .qrc 变更触发
   VERBATIM
 )
+else()
+ # Linux/macOS：用 Qt 的 rcc 直接生成二进制 rcc
+  find_program(QT_RCC_EXECUTABLE NAMES rcc rcc-qt5)
+  if(NOT QT_RCC_EXECUTABLE)
+    message(FATAL_ERROR "Qt rcc not found. Ensure Qt is installed and rcc is in PATH.")
+  endif()
+
+  # 强烈建议你指定“主 qrc”，不要靠 glob 随机挑一个
+  set(SD_MAIN_QRC "${GEN_RCC_WD}/SolidDesignerRes.qrc") 
+  if(NOT EXISTS "${SD_MAIN_QRC}")
+    message(FATAL_ERROR "Main qrc not found: ${SD_MAIN_QRC}. Please set SD_MAIN_QRC explicitly.")
+  endif()
+
+  add_custom_command(OUTPUT "${SD_RCC_FILE}"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${SD_RCC_DIR}"
+    COMMAND ${CMAKE_COMMAND} -E echo ">>> GenerateRCC: ${QT_RCC_EXECUTABLE} -binary ${SD_MAIN_QRC} -o ${SD_RCC_FILE}"
+    COMMAND "${QT_RCC_EXECUTABLE}" -binary "${SD_MAIN_QRC}" -o "${SD_RCC_FILE}"
+    WORKING_DIRECTORY "${GEN_RCC_WD}"
+    DEPENDS "${SD_MAIN_QRC}" ${SD_QRCS}
+    VERBATIM
+  )
+
+endif()
 
  # 声明一个“资源生成”目标，并让可执行程序依赖它
 add_custom_target(SolidDesignerRes ALL DEPENDS "${SD_RCC_FILE}")
