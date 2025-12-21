@@ -6,8 +6,19 @@
 message("*--*--*--*--*--*--*--*--*--*--*--*--*--Start SolidDesignerCommand--*--*--*--*--*--*--*--*--*--*--**--*--*--*")
 message("CMAKE_SOURCE_DIR = ${CMAKE_SOURCE_DIR}")
 # 先指定你项目内置的 Python 解释器
-set(_SD_PY_ROOT "${CMAKE_SOURCE_DIR}/ToolChain/Python310")
-set(Python3_EXECUTABLE "${_SD_PY_ROOT}/python.exe" CACHE FILEPATH "SolidDesigner bundled Python" FORCE)
+if(WIN32)
+    # Windows: use repo toolchain python
+    set(_SD_PY_ROOT "${CMAKE_SOURCE_DIR}/ToolChain/Python310")
+    set(Python3_EXECUTABLE "${_SD_PY_ROOT}/python.exe" CACHE FILEPATH "SolidDesigner bundled Python" FORCE)
+else()
+   # Linux/macOS: use system python3
+    find_program(_PY3 NAMES python3 python REQUIRED)
+    set(Python3_EXECUTABLE
+        "${_PY3}"
+        CACHE FILEPATH "Python3 interpreter" FORCE)
+
+endif()
+
 
 # 然后再找 Python3
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
