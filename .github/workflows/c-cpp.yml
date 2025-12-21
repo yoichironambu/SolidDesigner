@@ -33,12 +33,16 @@ jobs:
         sudo apt-get install -y --no-install-recommends \
           qtbase5-dev qtbase5-dev-tools qt5-qmake \
           qttools5-dev qttools5-dev-tools \
-          libqt5svg5-dev
+          libqt5svg5-dev\
+          qtdeclarative5-dev \
+          qtquickcontrols2-5-dev\
+          python3 \
+          uuid-dev
 
 
        
     - name: Configure with CMake (headless)
-      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSD_BUILD_DESIGNER=OFF -DSD_BUILD_DEMOS=OFF -DQt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5
+      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DSD_BUILD_DESIGNER=ON -DSD_BUILD_DEMOS=ON -DQt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5
 
     - name: Build
       run: cmake --build build --config Release --parallel

@@ -6,10 +6,6 @@
 message("=====================================Start pugixml=======================================")
 message("${PROJECT_SOURCE_DIR}")
 
-if(WIN32)
-  add_definitions(-D_WINDOWS)
-endif()
-
 FILE(GLOB SOURCE_CPP_FILES "${PROJECT_SOURCE_DIR}/Externals/pugixml/*.cpp")
 FILE(GLOB HEADER_H_FILES   "${PROJECT_SOURCE_DIR}/Externals/pugixml/*.hpp")
 
@@ -61,6 +57,10 @@ add_library(pugixml SHARED ${HEADER_H_FILES} ${SOURCE_CPP_FILES} )
 
 set_target_properties(pugixml PROPERTIES FOLDER "Externals")
 #=============================================================================
+
+if(WIN32)
+  target_compile_definitions(pugixml PRIVATE _WINDOWS)
+endif()
 
 #-----------------------------------------------------------------------------
 # 头文件搜索路径
