@@ -9,6 +9,7 @@ using namespace sdr;
 using namespace alice;
 
 sdr::SolidHelpAboutCommand::SolidHelpAboutCommand() noexcept
+	: AppCommandBase(std::string(Cmd::HELP_ABOUT))
 {
 
 }
@@ -16,11 +17,6 @@ sdr::SolidHelpAboutCommand::SolidHelpAboutCommand() noexcept
 sdr::SolidHelpAboutCommand::~SolidHelpAboutCommand()
 {
 
-}
-
-const std::string_view& sdr::SolidHelpAboutCommand::Id() const noexcept
-{
-	return Cmd::HELP_ABOUT;
 }
 
 bool sdr::SolidHelpAboutCommand::IsSupported() const

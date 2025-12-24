@@ -14,13 +14,9 @@ SolidFileNewCommand::~SolidFileNewCommand()
 }
 
 SolidFileNewCommand::SolidFileNewCommand() noexcept
+	: AppCommandBase(std::string(Cmd::FILE_NEW))
 {
 
-}
-
-const std::string_view& sdr::SolidFileNewCommand::Id() const noexcept
-{
-	return sdr::Cmd::FILE_NEW;
 }
 
 std::string SolidFileNewCommand::DisabledReason() const

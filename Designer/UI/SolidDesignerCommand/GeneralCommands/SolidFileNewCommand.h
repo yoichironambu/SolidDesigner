@@ -21,9 +21,6 @@ namespace sdr
 
 		~SolidFileNewCommand() override;
 
-		/// \brief Logical command id, must match CommandsConfig.xml: id="file.new"
-		const std::string_view& Id() const noexcept override;
-
 		bool IsSupported() const override;
 		bool IsVisible() const override;
 		bool IsEnabled() const override;

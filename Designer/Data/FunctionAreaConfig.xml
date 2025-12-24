@@ -36,62 +36,115 @@
 
             <!-- Tab: Home/Model -->
             <tab id="tab_part_home" label="Model" order="10">
-                <!-- Sketch group -->
-                <group id="grp_part_sketch" label="Sketch" order="10">
-                    <control type="large-button" commandRef="sketch.new"   row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="sketch.edit"  row="0" column="1"/>
-                    <control type="small-button" commandRef="sketch.reuse" row="1" column="1"/>
-                    <control type="small-button" commandRef="sketch.mirror" row="2" column="1"/>
+
+                <!-- Operations -->
+                <group id="grp_model_operations" label="Operations" order="10">
+                    <control type="large-button" commandRef="model.regenerate" row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="model.delete"      row="0" column="1" rowSpan="3"/>
                 </group>
 
-                <!-- Features -->
-                <group id="grp_part_features" label="Features" order="20">
-                    <control type="large-button" commandRef="model.extrude" row="0" column="0" rowSpan="3"/>
-                    <control type="large-button" commandRef="model.revolve" row="0" column="1" rowSpan="3"/>
-                    <control type="small-button" commandRef="model.hole"    row="0" column="2"/>
-                    <control type="small-button" commandRef="model.slot"    row="1" column="2"/>
-                    <control type="small-button" commandRef="model.chamfer" row="2" column="2"/>
-                    <control type="small-button" commandRef="model.fillet"  row="0" column="3"/>
-                    <control type="small-button" commandRef="model.shell"   row="1" column="3"/>
-                    <control type="small-button" commandRef="model.draft"   row="2" column="3"/>
+                <!-- Get Data -->
+                <group id="grp_model_getData" label="Get Data" order="20">
+                    <control type="large-button" commandRef="model.getData.userDefinedFeature"          row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.getData.copyGeometry" row="0" column="1"/>
+                    <control type="small-button" commandRef="model.getData.shrinkwrap"   row="1" column="1"/>
+                    <control type="small-button" commandRef="model.getData.import"       row="2" column="1"/>
+
+                    <control type="small-button" commandRef="model.getData.mergeInheritance"   row="0" column="2"/>
+                    <control type="small-button" commandRef="model.getData.copyFrom"           row="1" column="2"/>
+                    <control type="small-button" commandRef="model.getData.independentGeometry" row="2" column="2"/>
+
+                    <control type="small-button" commandRef="model.getData.layoutFeature" row="0" column="3"/>
                 </group>
 
-                <!-- Boolean / Feature control -->
-                <group id="grp_part_boolean" label="Boolean / Feature" order="25">
-                    <control type="small-button" commandRef="model.boolean.union"     row="0" column="0"/>
-                    <control type="small-button" commandRef="model.boolean.subtract"  row="1" column="0"/>
-                    <control type="small-button" commandRef="model.boolean.intersect" row="2" column="0"/>
-                    <control type="small-button" commandRef="model.feature.suppress"   row="0" column="1"/>
-                    <control type="small-button" commandRef="model.feature.unsuppress" row="1" column="1"/>
-                    <control type="small-button" commandRef="model.feature.delete"     row="2" column="1"/>
-                </group>
-
-                <!-- Datums -->
-                <group id="grp_part_datums" label="Datums" order="30">
+                <!-- Datum -->
+                <group id="grp_model_datum" label="Datum" order="30">
                     <control type="large-button" commandRef="datum.plane" row="0" column="0" rowSpan="3"/>
                     <control type="small-button" commandRef="datum.axis"  row="0" column="1"/>
-                    <control type="small-button" commandRef="datum.cs"    row="1" column="1"/>
-                    <control type="small-button" commandRef="datum.point" row="2" column="1"/>
+                    <control type="small-button" commandRef="datum.point" row="1" column="1"/>
+                    <control type="small-button" commandRef="datum.cs"    row="2" column="1"/>
                 </group>
 
-                <!-- Direct edit -->
-                <group id="grp_part_edit" label="Direct Edit" order="40">
-                    <control type="large-button" commandRef="smove.face"               row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="synchronous.pull"         row="0" column="1"/>
-                    <control type="small-button" commandRef="synchronous.offsetRegion" row="1" column="1"/>
-                    <control type="small-button" commandRef="synchronous.deleteFace"   row="2" column="1"/>
+                <!-- Shapes -->
+                <group id="grp_model_shapes" label="Shapes" order="40">
+                    <control type="large-button" commandRef="sketch.new"    row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="model.extrude" row="0" column="1" rowSpan="3"/>
+                    <control type="large-button" commandRef="model.revolve" row="0" column="2" rowSpan="3"/>
+
+                    <control type="large-button" commandRef="model.sweep"              row="0" column="3" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.sweep.helical"       row="0" column="4"/>
+                    <control type="small-button" commandRef="model.sweep.volumeHelical" row="1" column="4"/>
+                    <control type="small-button" commandRef="model.sweepBlend"          row="2" column="4"/>
+
+                    <control type="large-button" commandRef="model.blend"            row="0" column="5" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.blend.rotational" row="0" column="6"/>
                 </group>
 
-                <!-- Measure -->
-                <group id="grp_part_measure" label="Measure" order="70">
-                    <control type="large-button" commandRef="measure.distance"  row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="measure.angle"     row="0" column="1"/>
-                    <control type="small-button" commandRef="measure.radius"    row="1" column="1"/>
-                    <control type="small-button" commandRef="measure.massProps" row="2" column="1"/>
+                <!-- Engineering -->
+                <group id="grp_model_engineering" label="Engineering" order="50">
+                    <control type="large-button" commandRef="model.hole"  row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="model.round" row="0" column="1" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.round.auto" row="0" column="2"/>
+
+                    <control type="large-button" commandRef="model.chamfer" row="0" column="3" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.chamfer.edge"   row="0" column="4"/>
+                    <control type="small-button" commandRef="model.chamfer.corner" row="1" column="4"/>
+
+                    <control type="large-button" commandRef="model.rib" row="0" column="5" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.rib.trajectory" row="0" column="6"/>
+                    <control type="small-button" commandRef="model.rib.profile"    row="1" column="6"/>
+
+                    <control type="large-button" commandRef="model.draft" row="0" column="7" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.draft.variablePullDirection" row="0" column="8"/>
+
+                    <control type="large-button" commandRef="model.shell" row="0" column="9" rowSpan="3"/>
+
+                    <control type="large-button" commandRef="model.pattern" row="0" column="10" rowSpan="3"/>
+                    <control type="small-button" commandRef="model.pattern.geometry" row="0" column="11"/>
+                    <control type="small-button" commandRef="model.pattern.table"    row="1" column="11"/>
                 </group>
+
+                <!-- Editing -->
+                <group id="grp_model_editing" label="Editing" order="60">
+                    <control type="small-button" commandRef="model.mirror"   row="0" column="0"/>
+                    <control type="small-button" commandRef="model.trim"     row="1" column="0"/>
+                    <control type="small-button" commandRef="model.merge"    row="2" column="0"/>
+
+                    <control type="small-button" commandRef="model.intersect" row="0" column="1"/>
+                    <control type="small-button" commandRef="model.extend"    row="1" column="1"/>
+                    <control type="small-button" commandRef="model.project"   row="2" column="1"/>
+
+                    <control type="small-button" commandRef="model.offset"  row="0" column="2"/>
+                    <control type="small-button" commandRef="model.thicken" row="1" column="2"/>
+
+                    <control type="small-button" commandRef="model.project.wrap"         row="0" column="3"/>
+                    <control type="small-button" commandRef="model.project.remove"       row="1" column="3"/>
+                    <control type="small-button" commandRef="model.project.splitSurface" row="2" column="3"/>
+
+                    <control type="small-button" commandRef="model.project.flipNormal" row="0" column="4"/>
+                    <control type="small-button" commandRef="model.project.collapse"   row="1" column="4"/>
+                </group>
+
+                <!-- Surfaces -->
+                <group id="grp_model_surfaces" label="Surfaces" order="70">
+                    <control type="large-button" commandRef="surface.boundaryBlend" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="surface.fill"      row="0" column="1"/>
+                    <control type="small-button" commandRef="surface.style"     row="1" column="1"/>
+                    <control type="small-button" commandRef="surface.freestyle" row="2" column="1"/>
+                </group>
+
+                <!-- Model Intent -->
+                <group id="grp_model_modelIntent" label="Model Intent" order="80">
+                    <control type="large-button" commandRef="modelIntent.componentInterface" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="modelIntent.publishGeometry"   row="0" column="1"/>
+                    <control type="small-button" commandRef="modelIntent.familyTable"      row="1" column="1"/>
+                    <control type="small-button" commandRef="modelIntent.parameters"       row="2" column="1"/>
+                    <control type="small-button" commandRef="modelIntent.switchDimensions" row="0" column="2"/>
+                </group>
+
             </tab>
 
-            <!-- Tab: Curves -->
+<!-- Tab: Curves -->
             <tab id="tab_part_curve" label="Curves" order="20">
                 <group id="grp_part_curve_basic" label="Basic Curves" order="10">
                     <control type="large-button" commandRef="curve.line"  row="0" column="0" rowSpan="3"/>
@@ -231,119 +284,119 @@
             </tab>
 
         </layout>
-
         <!-- ===================== Sketch environment ===================== -->
         <layout ribbon="sd.sketch">
 
-            <!-- Tab: Sketch Home -->
+            <!-- Tab: Sketch (Creo contextual) -->
             <tab id="tab_sketch_home" label="Sketch" order="10">
-                <!-- Geometry -->
-                <group id="grp_sketch_geometry" label="Geometry" order="10">
-                    <control type="large-button" commandRef="curve.line"          row="0" column="0" rowSpan="3"/>
-                    <control type="large-button" commandRef="curve.circle"        row="0" column="1" rowSpan="3"/>
-                    <control type="small-button" commandRef="curve.arc"           row="0" column="2"/>
-                    <control type="small-button" commandRef="curve.rectangle"     row="1" column="2"/>
-                    <control type="small-button" commandRef="curve.splineThrough" row="2" column="2"/>
+
+                <!-- Sketch Setup / References / Sketch View -->
+                <group id="grp_sketch_setup" label="Setup" order="10">
+                    <control type="large-button" commandRef="sketch.setup"      row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sketch.references" row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.view"       row="1" column="1"/>
+
+                    <control type="small-button" commandRef="sketch.section.setHorizontalReference" row="0" column="2"/>
+                    <control type="small-button" commandRef="sketch.section.setVerticalReference"   row="1" column="2"/>
+                    <control type="small-button" commandRef="sketch.section.restoreSectionOrientation" row="2" column="2"/>
+                    <control type="small-button" commandRef="sketch.section.flipSectionOrientation" row="0" column="3"/>
+                    <control type="small-button" commandRef="sketch.section.flipSketchingPlane"     row="1" column="3"/>
+
+                    <control type="small-button" commandRef="sketch.display.dimensions"  row="0" column="4"/>
+                    <control type="small-button" commandRef="sketch.display.constraints" row="1" column="4"/>
+                    <control type="small-button" commandRef="sketch.display.vertices"    row="2" column="4"/>
+                    <control type="small-button" commandRef="sketch.display.grid"        row="0" column="5"/>
                 </group>
 
-                <!-- Modify -->
-                <group id="grp_sketch_modify" label="Modify" order="20">
-                    <control type="small-button" commandRef="sketch.modify.trim"    row="0" column="0"/>
-                    <control type="small-button" commandRef="sketch.modify.extend"  row="1" column="0"/>
-                    <control type="small-button" commandRef="sketch.modify.fillet"  row="2" column="0"/>
-                    <control type="small-button" commandRef="sketch.modify.offset"  row="0" column="1"/>
-                    <control type="small-button" commandRef="sketch.modify.mirror"  row="1" column="1"/>
-                    <control type="small-button" commandRef="sketch.modify.pattern" row="2" column="1"/>
+                <!-- Operations -->
+                <group id="grp_sketch_operations" label="Operations" order="20">
+                    <control type="large-button" commandRef="sketch.fileSystem" row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="sketch.select"     row="0" column="1" rowSpan="3"/>
+
+                    <control type="small-button" commandRef="sketch.ops.delete"       row="0" column="2"/>
+                    <control type="small-button" commandRef="sketch.ops.replace"      row="1" column="2"/>
+                    <control type="small-button" commandRef="sketch.ops.construction" row="2" column="2"/>
+                    <control type="small-button" commandRef="sketch.ops.toggleLock"   row="0" column="3"/>
+                    <control type="small-button" commandRef="sketch.ops.convertTo"    row="1" column="3"/>
                 </group>
 
-                <!-- Sketch management -->
-                <group id="grp_sketch_manage" label="Sketch Management" order="30">
-                    <control type="large-button" commandRef="sketch.new"  row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="sketch.edit" row="0" column="1"/>
-                    <control type="small-button" commandRef="sketch.reuse" row="1" column="1"/>
+                <!-- Datum -->
+                <group id="grp_sketch_datum" label="Datum" order="30">
+                    <control type="large-button" commandRef="curve.centerline" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="datum.point"      row="0" column="1"/>
+                    <control type="small-button" commandRef="datum.cs"         row="1" column="1"/>
                 </group>
-            </tab>
 
-            <!-- Tab: Dimensions -->
-            <tab id="tab_sketch_dim" label="Dimensions" order="20">
-                <group id="grp_sketch_dim_linear" label="Linear" order="10">
-                    <control type="large-button" commandRef="sketch.dim.general"    row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="sketch.dim.horizontal" row="0" column="1"/>
-                    <control type="small-button" commandRef="sketch.dim.vertical"   row="1" column="1"/>
-                </group>
-                <group id="grp_sketch_dim_radial" label="Radial / Angular" order="20">
-                    <control type="small-button" commandRef="sketch.dim.radius"   row="0" column="0"/>
-                    <control type="small-button" commandRef="sketch.dim.diameter" row="1" column="0"/>
-                    <control type="small-button" commandRef="sketch.dim.angle"    row="2" column="0"/>
-                </group>
-            </tab>
+                <!-- Sketching -->
+                <group id="grp_sketch_sketching" label="Sketching" order="40">
+                    <control type="large-button" commandRef="curve.line"      row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="curve.rectangle" row="0" column="1" rowSpan="3"/>
+                    <control type="large-button" commandRef="curve.circle"    row="0" column="2" rowSpan="3"/>
 
-            <!-- Tab: Constraints -->
-            <tab id="tab_sketch_constraint" label="Constraints" order="30">
-                <group id="grp_sketch_constraint_geo" label="Geometric Constraints" order="10">
-                    <control type="small-button" commandRef="sketch.constraint.horizontal"    row="0" column="0"/>
-                    <control type="small-button" commandRef="sketch.constraint.vertical"      row="1" column="0"/>
-                    <control type="small-button" commandRef="sketch.constraint.parallel"      row="2" column="0"/>
-                    <control type="small-button" commandRef="sketch.constraint.perpendicular" row="0" column="1"/>
-                    <control type="small-button" commandRef="sketch.constraint.tangent"       row="1" column="1"/>
-                    <control type="small-button" commandRef="sketch.constraint.coincident"    row="2" column="1"/>
-                </group>
-                <group id="grp_sketch_constraint_other" label="Other" order="20">
-                    <control type="small-button" commandRef="sketch.constraint.equal"     row="0" column="0"/>
-                    <control type="small-button" commandRef="sketch.constraint.symmetric" row="1" column="0"/>
-                    <control type="small-button" commandRef="sketch.constraint.fix"       row="2" column="0"/>
-                </group>
-            </tab>
+                    <control type="small-button" commandRef="curve.arc"        row="0" column="3"/>
+                    <control type="small-button" commandRef="curve.ellipse"    row="1" column="3"/>
+                    <control type="small-button" commandRef="curve.splineThrough" row="2" column="3"/>
 
-            <!-- Tab: Analysis -->
-            <tab id="tab_sketch_analysis" label="Analysis" order="40">
-                <group id="grp_sketch_analysis_measure" label="Measure" order="10">
-                    <control type="large-button" commandRef="measure.distance" row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="measure.angle"    row="0" column="1"/>
-                    <control type="small-button" commandRef="measure.radius"   row="1" column="1"/>
-                </group>
-            </tab>
+                    <control type="small-button" commandRef="sketch.modify.fillet"   row="0" column="4"/>
+                    <control type="small-button" commandRef="sketch.modify.chamfer"  row="1" column="4"/>
+                    <control type="small-button" commandRef="sketch.text"            row="2" column="4"/>
 
-            <!-- Shared: view / display / selection / tools -->
-            <tab id="tab_sketch_view" label="View" order="50">
-                <group id="grp_sketch_view_orientation" label="Orientation" order="10">
-                    <control type="large-button" commandRef="view.trimetric" row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="view.top"       row="0" column="1"/>
-                    <control type="small-button" commandRef="view.front"     row="1" column="1"/>
-                    <control type="small-button" commandRef="view.right"     row="2" column="1"/>
+                    <control type="small-button" commandRef="sketch.project"         row="0" column="5"/>
+                    <control type="small-button" commandRef="sketch.modify.offset"   row="1" column="5"/>
+                    <control type="small-button" commandRef="sketch.thicken"         row="2" column="5"/>
                 </group>
-            </tab>
 
-            <tab id="tab_sketch_display" label="Display" order="60">
-                <group id="grp_sketch_display_style" label="Display Style" order="10">
-                    <control type="large-button" commandRef="display.shaded"          row="0" column="0" rowSpan="3"/>
-                    <control type="small-button" commandRef="display.shadedWithEdges" row="0" column="1"/>
-                    <control type="small-button" commandRef="display.wireframe"       row="1" column="1"/>
-                </group>
-            </tab>
+                <!-- Editing -->
+                <group id="grp_sketch_editing" label="Editing" order="50">
+                    <control type="small-button" commandRef="sketch.modify.modify"        row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.deleteSegment" row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.modify.mirror"        row="2" column="0"/>
 
-            <tab id="tab_sketch_selection" label="Selection" order="70">
-                <group id="grp_sketch_sel_filter" label="Selection Filter" order="10">
-                    <control type="combo" commandRef="select.filter" row="0" column="0" rowSpan="1" colSpan="2"/>
+                    <control type="small-button" commandRef="sketch.modify.divide"       row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.modify.corner"       row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.modify.rotateResize" row="2" column="1"/>
                 </group>
-                <group id="grp_sketch_sel_method" label="Method" order="20">
-                    <control type="small-button" commandRef="select.single"    row="0" column="0"/>
-                    <control type="small-button" commandRef="select.rectangle" row="1" column="0"/>
-                    <control type="small-button" commandRef="select.lasso"     row="2" column="0"/>
-                </group>
-            </tab>
 
-            <tab id="tab_sketch_tools" label="Tools" order="80">
-                <group id="grp_sketch_tools_expression" label="Expressions" order="10">
-                    <control type="large-button" commandRef="tools.expressions" row="0" column="0" rowSpan="3"/>
+                <!-- Constrain -->
+                <group id="grp_sketch_constrain" label="Constrain" order="60">
+                    <control type="small-button" commandRef="sketch.constraint.vertical"      row="0" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.horizontal"    row="1" column="0"/>
+                    <control type="small-button" commandRef="sketch.constraint.perpendicular" row="2" column="0"/>
+
+                    <control type="small-button" commandRef="sketch.constraint.coincident" row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.constraint.tangent"    row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.constraint.midPoint"   row="2" column="1"/>
+
+                    <control type="small-button" commandRef="sketch.constraint.symmetric" row="0" column="2"/>
+                    <control type="small-button" commandRef="sketch.constraint.equal"     row="1" column="2"/>
+                    <control type="small-button" commandRef="sketch.constraint.parallel"  row="2" column="2"/>
                 </group>
-                <group id="grp_sketch_tools_python" label="Python" order="20">
-                    <control type="large-button" commandRef="tools.pythonConsole" row="0" column="0" rowSpan="3"/>
+
+                <!-- Dimension -->
+                <group id="grp_sketch_dimension" label="Dimension" order="70">
+                    <control type="large-button" commandRef="sketch.dim.dimension" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sketch.dim.reference" row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.dim.baseline"  row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.dim.perimeter" row="2" column="1"/>
                 </group>
+
+                <!-- Inspect -->
+                <group id="grp_sketch_inspect" label="Inspect" order="80">
+                    <control type="large-button" commandRef="sketch.inspect.featureRequirements" row="0" column="0" rowSpan="3"/>
+                    <control type="small-button" commandRef="sketch.inspect.intersectionPoint"   row="0" column="1"/>
+                    <control type="small-button" commandRef="sketch.inspect.tangencyPoint"       row="1" column="1"/>
+                    <control type="small-button" commandRef="sketch.inspect.entity"              row="2" column="1"/>
+                </group>
+
+                <!-- Close -->
+                <group id="grp_sketch_close" label="Close" order="90">
+                    <control type="large-button" commandRef="sketch.ok"     row="0" column="0" rowSpan="3"/>
+                    <control type="large-button" commandRef="sketch.cancel" row="0" column="1" rowSpan="3"/>
+                </group>
+
             </tab>
 
         </layout>
-
         <!-- ===================== Assembly environment ===================== -->
         <layout ribbon="sd.asm">
 
@@ -385,8 +438,8 @@
                     <control type="large-button" commandRef="model.extrude" row="0" column="0" rowSpan="3"/>
                     <control type="large-button" commandRef="model.revolve" row="0" column="1" rowSpan="3"/>
                     <control type="small-button" commandRef="model.hole"    row="0" column="2"/>
-                    <control type="small-button" commandRef="model.slot"    row="1" column="2"/>
-                    <control type="small-button" commandRef="model.fillet"  row="2" column="2"/>
+                    <control type="small-button" commandRef="model.chamfer"    row="1" column="2"/>
+                    <control type="small-button" commandRef="model.round"  row="2" column="2"/>
                 </group>
             </tab>
 
@@ -711,10 +764,10 @@
                 <item type="command" commandRef="model.extrude"/>
                 <item type="command" commandRef="model.revolve"/>
                 <item type="command" commandRef="model.hole"/>
-                <item type="command" commandRef="model.slot"/>
+                <item type="command" commandRef="model.chamfer"/>
                 <item type="separator"/>
                 <item type="command" commandRef="model.chamfer"/>
-                <item type="command" commandRef="model.fillet"/>
+                <item type="command" commandRef="model.round"/>
                 <item type="command" commandRef="model.shell"/>
                 <item type="command" commandRef="model.draft"/>
                 <item type="separator"/>

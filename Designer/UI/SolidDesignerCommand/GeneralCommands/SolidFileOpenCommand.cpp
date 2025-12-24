@@ -11,12 +11,13 @@ using namespace alice;
 using namespace sdr;
 
 SolidFileOpenCommand::SolidFileOpenCommand() noexcept
+	: AppCommandBase(std::string(Cmd::FILE_OPEN))
 {
 }
 
-const std::string_view& SolidFileOpenCommand::Id() const noexcept
+SolidFileOpenCommand::~SolidFileOpenCommand()
 {
-	return sdr::Cmd::FILE_OPEN;
+
 }
 
 bool SolidFileOpenCommand::IsSupported() const

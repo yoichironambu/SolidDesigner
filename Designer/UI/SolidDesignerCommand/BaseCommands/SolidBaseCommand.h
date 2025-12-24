@@ -43,7 +43,10 @@ namespace sdr
 		///
 		/// The returned reference is valid for the lifetime of the command
 		/// instance. If no id was set, an empty string is returned.
-		const std::string_view& Id() const noexcept override;
+		std::string_view Id() const noexcept override;
+
+		///\ brief: get the owner module id
+		virtual const std::wstring& ModuleId() const noexcept override;
 
 		/// \brief Whether the command is supported in the current environment.
 		///
@@ -95,11 +98,20 @@ namespace sdr
 		/// \param id New identifier string to store.
 		void SetId(std::string id) noexcept;
 
+		/// \brief Set the stable identifier of owner module.
+		///
+		/// This helper is intended to be called from derived class
+		/// constructors when using the default AppCommandBase() constructor.
+		///
+		/// \param id New identifier string to store.
+        void SetModuleId(const std::wstring& id) noexcept;
+
 	private:
 		/// \brief Stable string identifier for this command.
 		///
 		/// Examples: "file.new", "file.open", "view.fitAll".
 		std::string m_id;
+		std::wstring m_strModuleId;
 	};
 
 } // namespace sdr

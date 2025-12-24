@@ -20,9 +20,7 @@ namespace sdr
 	public:
 		SolidFileSaveCommand() noexcept;
 
-		~SolidFileSaveCommand() override = default;
-
-		const std::string_view& Id() const noexcept override;
+		~SolidFileSaveCommand() override;
 
 		bool IsSupported() const override;
 		bool IsVisible() const override;

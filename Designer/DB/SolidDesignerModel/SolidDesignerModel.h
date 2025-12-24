@@ -12,32 +12,9 @@
 #define SOLIDDESIGNER_MODEL_EXPORT __attribute__((visibility("default")))
 #endif
 
-namespace
-{
-    void InitTest()
-    {
-        int i = 0;
-        std::cout << "Here is init test..." << std::endl;
-    }
-
-    void UnInitTest()
-    {
-        int i = 0;
-        std::cout << "Here is uninit test..." << std::endl;
-    }
-}
 
 
-extern "C" void InitializePlugin()
-{
-    InitTest();
-}
 
-
-extern "C" void UnInitializePlugin()
-{
-    UnInitTest();
-}
 
 
 

@@ -21,8 +21,6 @@ namespace sdr
 
 		~SolidEditUndoCommand() override ;
 
-		const std::string_view& Id() const noexcept override;
-
 		bool IsSupported() const override;
 		bool IsVisible() const override;
 		bool IsEnabled() const override;

@@ -1,0 +1,13 @@
+<Plugin>
+  <Company>SolidDesigner</Company>
+  <Id>SolidDesignerCommand</Id>
+  <Name>SolidDesignerCommand Plugin</Name>
+  <RelativePath>Plugins/SolidDesignerCommand.dll</RelativePath>
+
+  <Dependencies>
+	  
+  </Dependencies>
+
+  <LoadAtStartUp>true</LoadAtStartUp>
+  <Intrinsic>true</Intrinsic>
+</Plugin>

@@ -1,18 +1,22 @@
 #include "SolidBaseCommand.h"
+#include "SolidDesignerCommand.h"
 #include <utility>  
-#include "../../AliceOperationInterface/Public/AliceIOperation.h"
+#include "AliceIOperation.h"
+
 
 using namespace alice;
 using namespace sdr;
 
 AppCommandBase::AppCommandBase() noexcept
 	: m_id()
+	, m_strModuleId(GuidUtils::ToString(soliddesignercommand::MODULE_ID))
 {
 
 }
 
 AppCommandBase::AppCommandBase(std::string id) noexcept
 	: m_id(std::move(id))
+	, m_strModuleId(GuidUtils::ToString(soliddesignercommand::MODULE_ID))
 {
 
 }
@@ -22,9 +26,14 @@ AppCommandBase::~AppCommandBase()
 
 }
 
-const std::string_view& AppCommandBase::Id() const noexcept
+std::string_view AppCommandBase::Id() const noexcept
 {
 	return m_id;
+}
+
+const std::wstring& AppCommandBase::ModuleId() const noexcept
+{
+	return m_strModuleId;
 }
 
 bool AppCommandBase::IsSupported() const
@@ -85,3 +94,9 @@ void AppCommandBase::SetId(std::string id) noexcept
     // only during construction of derived command classes.
 	m_id = std::move(id);
 }
+
+void AppCommandBase::SetModuleId(const std::wstring& id) noexcept
+{
+	m_strModuleId = id;
+}
+

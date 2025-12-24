@@ -11,12 +11,13 @@ using namespace alice;
 using namespace sdr;
 
 SolidFileSaveCommand::SolidFileSaveCommand() noexcept
+	: AppCommandBase(std::string(Cmd::FILE_SAVE))
 {
 }
 
-const std::string_view& SolidFileSaveCommand::Id() const noexcept
+SolidFileSaveCommand::~SolidFileSaveCommand()
 {
-	return sdr::Cmd::FILE_SAVE;
+
 }
 
 bool SolidFileSaveCommand::IsSupported() const
@@ -151,3 +152,5 @@ bool SolidFileSaveCommand::saveDocument_(IDocument& doc, const std::wstring& pat
 	//}
 	return false;
 }
+
+

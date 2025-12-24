@@ -20,9 +20,7 @@ namespace sdr
 	public:
 		SolidFileOpenCommand() noexcept;
 
-		~SolidFileOpenCommand() override = default;
-
-		const std::string_view& Id() const noexcept override;
+		~SolidFileOpenCommand() override;
 
 		bool IsSupported() const override;
 		bool IsVisible() const override;

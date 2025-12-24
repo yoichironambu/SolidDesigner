@@ -18,32 +18,5 @@ namespace soliddesignercommand
 	extern const Guid MODULE_ID;
 }
 
-namespace
-{
-    void InitTest()
-    {
-        int i = 0;
-        std::cout << "Here is init test..." << std::endl;
-    }
-
-    void UnInitTest()
-    {
-        int i = 0;
-        std::cout << "Here is uninit test..." << std::endl;
-    }
-}
-
-
-extern "C" void InitializePlugin()
-{
-    InitTest();
-}
-
-
-extern "C" void UnInitializePlugin()
-{
-    UnInitTest();
-}
-
 
 

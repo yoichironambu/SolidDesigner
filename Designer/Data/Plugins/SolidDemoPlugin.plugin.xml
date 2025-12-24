@@ -1,4 +1,4 @@
-<Addin>
+<Plugin>
   <Company>alice</Company>
   <Id>DemoPlugin</Id>
   <Name>Demo Plugin</Name>
@@ -10,4 +10,4 @@
 
   <LoadAtStartUp>true</LoadAtStartUp>
   <Intrinsic>false</Intrinsic>
-</Addin>
+</Plugin>

@@ -34,6 +34,7 @@ file(GLOB SDC_FILES
   "${ABS_SDC}/EditCommands/*.h" "${ABS_SDC}/EditCommands/*.cpp"
   "${ABS_SDC}/HelpCommands/*.h" "${ABS_SDC}/HelpCommands/*.cpp"
   "${ABS_SDC}/GeneralCommands/*.h" "${ABS_SDC}/GeneralCommands/*.cpp"
+  "${ABS_SDC}/ModelCommands/*.h" "${ABS_SDC}/ModelCommands/*.cpp"
 )
 
 source_group(TREE "${ABS_SDC}" FILES ${SDC_FILES})
@@ -50,11 +51,50 @@ include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/Alice/Core/Foundation/AliceBasicTool/Public)
 include_directories(${PROJECT_SOURCE_DIR}/Alice/Core/Foundation/AliceFoundation/Public)
+include_directories(${PROJECT_SOURCE_DIR}/Alice/Core/Runtime/AlicePluginSystem/Public)
 include_directories(${PROJECT_SOURCE_DIR}/Alice/Interaction/Interface/AliceCommandInterface/Public)
 include_directories(${PROJECT_SOURCE_DIR}/Alice/Interaction/Interface/AliceOperationInterface/Public)
+include_directories(${PROJECT_SOURCE_DIR}/Alice/Interaction/Interface/AliceCoreApplicationInterface/Public)
 include_directories(${PROJECT_SOURCE_DIR}/Alice/Data/Interface/AliceModelInterface/Public)
 
 include_directories(${PROJECT_SOURCE_DIR}/Alice/UI/QFrameWork/AliceUiFrameWork/Public)
+
+
+#-----------------------------------------------------------------------------
+# 定义项目构建中间文件的生成目录
+#-----------------------------------------------------------------------------
+message("${CMAKE_BINARY_DIR}")
+# 用指针位数决定输出目录：x64 / x86
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+  set(SD_ARCH "x64")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+  set(SD_ARCH "x86")
+else()
+  message(FATAL_ERROR "Unknown pointer size: ${CMAKE_SIZEOF_VOID_P}")
+endif()
+
+# Linux 侧需要 GNUInstallDirs 提供 CMAKE_INSTALL_LIBDIR/BINDIR
+if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
+endif()
+
+# 防止误开关：Linux 下不允许走 SOLIDRENDER_WIN 分支
+if(SOLIDRENDER_WIN AND NOT WIN32)
+  message(FATAL_ERROR "SOLIDRENDER_WIN=ON but WIN32=OFF. Disable SOLIDRENDER_WIN on Linux.")
+endif()
+if(SOLIDRENDER_WIN)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug/Plugins)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug/Plugins)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug/Plugins)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release/Plugins)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release/Plugins)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release/Plugins)
+
+elseif(SOLIDRENDER_LINUX)  
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/Plugins)
+endif()
 
 #=============================================================================
 #指定工程为动态库程序
@@ -87,42 +127,6 @@ if (WIN32 AND MINGW)
     # and transform the ".dll.a" suffix into ".a" for import libraries
     set_target_properties(SolidDesignerCommand PROPERTIES PREFIX "")
     set_target_properties(SolidDesignerCommand PROPERTIES IMPORT_SUFFIX ".a")
-endif()
-
-#-----------------------------------------------------------------------------
-# 定义项目构建中间文件的生成目录
-#-----------------------------------------------------------------------------
-message("${CMAKE_BINARY_DIR}")
-# 用指针位数决定输出目录：x64 / x86
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-  set(SD_ARCH "x64")
-elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
-  set(SD_ARCH "x86")
-else()
-  message(FATAL_ERROR "Unknown pointer size: ${CMAKE_SIZEOF_VOID_P}")
-endif()
-
-# Linux 侧需要 GNUInstallDirs 提供 CMAKE_INSTALL_LIBDIR/BINDIR
-if(UNIX AND NOT APPLE)
-  include(GNUInstallDirs)
-endif()
-
-# 防止误开关：Linux 下不允许走 SOLIDRENDER_WIN 分支
-if(SOLIDRENDER_WIN AND NOT WIN32)
-  message(FATAL_ERROR "SOLIDRENDER_WIN=ON but WIN32=OFF. Disable SOLIDRENDER_WIN on Linux.")
-endif()
-if(SOLIDRENDER_WIN)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${SD_ARCH}/Debug)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/${SD_ARCH}/Release)
-
-elseif(SOLIDRENDER_LINUX)  
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 endif()
 
 
@@ -158,16 +162,17 @@ set_target_properties(SolidDesignerCommandsId PROPERTIES FOLDER "Designer/UI")
 
 
 #-----------------------------------------------------------------------------
-# 链接第三方的库
-# @1、链接的动作需要放到add_library之后
+# 链接第三方的库 链接的动作需要放到add_library之后
 #-----------------------------------------------------------------------------
 target_link_libraries(SolidDesignerCommand PRIVATE
     AliceFoundation
     AliceBasicTool
+    AliceCoreApplicationInterface
     AliceCommandInterface
     AliceOperationInterface
     AliceModelInterface
     AliceUiFrameWork
+    AlicePluginSystem
 )
 
 

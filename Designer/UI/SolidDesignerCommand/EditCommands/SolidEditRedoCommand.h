@@ -1,5 +1,4 @@
 ﻿#pragma once
-
 #include "BaseCommands/SolidBaseCommand.h"
 #include <memory>
 #include <string>
@@ -15,12 +14,12 @@ namespace alice
 
 namespace sdr
 {
-	class SolidHelpContentsCommand final : public AppCommandBase
+	class SolidEditRedoCommand final : public AppCommandBase
 	{
 	public:
-		SolidHelpContentsCommand() noexcept;
+		SolidEditRedoCommand() noexcept;
 
-		~SolidHelpContentsCommand() override;
+		~SolidEditRedoCommand() override ;
 
 		bool IsSupported() const override;
 		bool IsVisible() const override;

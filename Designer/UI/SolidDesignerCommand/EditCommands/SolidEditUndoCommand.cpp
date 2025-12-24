@@ -6,6 +6,7 @@ using namespace sdr;
 using namespace alice;
 
 sdr::SolidEditUndoCommand::SolidEditUndoCommand() noexcept
+	: AppCommandBase(std::string(Cmd::EDIT_UNDO))
 {
 
 }
@@ -13,11 +14,6 @@ sdr::SolidEditUndoCommand::SolidEditUndoCommand() noexcept
 sdr::SolidEditUndoCommand::~SolidEditUndoCommand()
 {
 
-}
-
-const std::string_view& sdr::SolidEditUndoCommand::Id() const noexcept
-{
-	return Cmd::EDIT_UNDO;
 }
 
 bool SolidEditUndoCommand::IsSupported() const
